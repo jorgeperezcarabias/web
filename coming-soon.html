@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RedAgraria — La plataforma agrícola que está a punto de llegar. Apúntate para ser el primero en saberlo.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:title" content="RedAgraria — Próximamente">
+  <meta property="og:description" content="Algo nuevo llega al campo español. Sé el primero en saberlo.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://red-agraria.es">
+
+  <title>RedAgraria — Próximamente</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── TOKENS ───────────────────────────────────────── */
+    :root {
+      --g900: #042b10;
+      --g800: #065f2e;
+      --g700: #166534;
+      --g600: #16a34a;
+      --g500: #22c55e;
+      --g400: #4ade80;
+      --g300: #86efac;
+      --g100: #dcfce7;
+      --g50:  #f0fdf4;
+      --gray: #6b7280;
+      --white: #ffffff;
+      --font-d: 'Playfair Display', Georgia, serif;
+      --font-b: 'Source Sans 3', system-ui, sans-serif;
+      --ease: .22s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── RESET ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { height: 100%; }
+    body {
+      font-family: var(--font-b);
+      min-height: 100%;
+      background: var(--g900);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ── FONDO ANIMADO ────────────────────────────────── */
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .bg__blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .18;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+    .bg__blob--1 {
+      width: 700px; height: 700px;
+      background: var(--g500);
+      top: -200px; right: -150px;
+      animation-duration: 22s;
+    }
+    .bg__blob--2 {
+      width: 500px; height: 500px;
+      background: var(--g400);
+      bottom: -150px; left: -100px;
+      animation-duration: 16s;
+      animation-direction: alternate-reverse;
+    }
+    .bg__blob--3 {
+      width: 300px; height: 300px;
+      background: var(--g300);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: .08;
+      animation-duration: 28s;
+    }
+    .bg__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(74,222,128,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74,222,128,.06) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.08); }
+    }
+
+    /* ── CONTENIDO ────────────────────────────────────── */
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      text-decoration: none;
+    }
+    .logo__icon {
+      width: 48px; height: 48px;
+    }
+    .logo__text {
+      font-family: var(--font-d);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--g300);
+      letter-spacing: -.02em;
+    }
+
+    /* Eyebrow */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--g400);
+      background: rgba(74,222,128,.1);
+      border: 1px solid rgba(74,222,128,.2);
+      padding: .35rem 1rem;
+      border-radius: 50px;
+    }
+    .eyebrow__dot {
+      width: 6px; height: 6px;
+      background: var(--g400);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(.8); }
+    }
+
+    /* Título */
+    .title {
+      font-family: var(--font-d);
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -.02em;
+      color: var(--white);
+    }
+    .title em {
+      font-style: italic;
+      color: var(--g400);
+    }
+
+    /* Subtítulo */
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--g300);
+      line-height: 1.75;
+      max-width: 420px;
+      opacity: .85;
+    }
+
+    /* ── FORMULARIO ───────────────────────────────────── */
+    .form-wrap {
+      width: 100%;
+      max-width: 420px;
+    }
+    .form-label {
+      display: block;
+      font-size: .8125rem;
+      font-weight: 500;
+      color: var(--g300);
+      margin-bottom: .6rem;
+      letter-spacing: .04em;
+    }
+    .form-row {
+      display: flex;
+      gap: .5rem;
+    }
+    .form-input {
+      flex: 1;
+      font-family: var(--font-b);
+      font-size: .9375rem;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 50px;
+      padding: .7rem 1.25rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color var(--ease), box-shadow var(--ease);
+    }
+    .form-input::placeholder { color: rgba(255,255,255,.35); }
+    .form-input:focus {
+      border-color: var(--g400);
+      box-shadow: 0 0 0 3px rgba(74,222,128,.15);
+    }
+    .form-btn {
+      font-family: var(--font-b);
+      font-size: .9375rem;
+      font-weight: 600;
+      background: var(--g500);
+      color: var(--g900);
+      border: none;
+      border-radius: 50px;
+      padding: .7rem 1.4rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
+      box-shadow: 0 4px 20px rgba(34,197,94,.3);
+    }
+    .form-btn:hover:not(:disabled) {
+      background: var(--g400);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 28px rgba(34,197,94,.4);
+    }
+    .form-btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    /* Mensajes de estado */
+    .form-msg {
+      margin-top: .75rem;
+      font-size: .875rem;
+      min-height: 1.4rem;
+      transition: opacity var(--ease);
+    }
+    .form-msg--ok    { color: var(--g400); }
+    .form-msg--error { color: #f87171; }
+    .form-msg--dup   { color: var(--g300); }
+
+    /* ── SEPARADOR ────────────────────────────────────── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(74,222,128,.2), transparent);
+    }
+
+    /* ── FOOTER MÍNIMO ────────────────────────────────── */
+    .foot {
+      font-size: .8rem;
+      color: rgba(255,255,255,.25);
+      margin-top: 1rem;
+    }
+    .foot a {
+      color: rgba(255,255,255,.35);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color var(--ease);
+    }
+    .foot a:hover { color: var(--g400); }
+  </style>
+</head>
+<body>
+
+  <div class="bg" aria-hidden="true">
+    <div class="bg__grid"></div>
+    <div class="bg__blob bg__blob--1"></div>
+    <div class="bg__blob bg__blob--2"></div>
+    <div class="bg__blob bg__blob--3"></div>
+  </div>
+
+  <main class="content" role="main">
+
+    <!-- Logo -->
+    <div class="logo" aria-label="RedAgraria">
+      <svg class="logo__icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="ls" x1="0.5" y1="1" x2="0.5" y2="0">
+            <stop offset="0%" stop-color="#166534"/>
+            <stop offset="100%" stop-color="#86efac"/>
+          </linearGradient>
+        </defs>
+        <line x1="28" y1="58" x2="38" y2="8"  stroke="url(#ls)" stroke-width="3" stroke-linecap="round"/>
+        <line x1="36" y1="38" x2="18" y2="28" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" opacity="0.9"/>
+        <line x1="37" y1="27" x2="16" y2="16" stroke="#86efac" stroke-width="1.7" stroke-linecap="round" opacity="0.7"/>
+        <line x1="35" y1="44" x2="48" y2="37" stroke="#4ade80" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
+        <line x1="36.5" y1="33" x2="50" y2="26" stroke="#4ade80" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
+        <circle cx="18" cy="28" r="3.5" fill="#4ade80"/>
+        <circle cx="16" cy="16" r="2.6" fill="#86efac"/>
+        <circle cx="48" cy="37" r="2.2" fill="#4ade80" opacity="0.55"/>
+        <circle cx="38" cy="8"  r="5"   fill="#4ade80"/>
+        <circle cx="38" cy="8"  r="2.5" fill="#ffffff" opacity="0.85"/>
+      </svg>
+      <span class="logo__text">RedAgraria</span>
+    </div>
+
+    <!-- Eyebrow -->
+    <span class="eyebrow">
+      <span class="eyebrow__dot" aria-hidden="true"></span>
+      Próximamente
+    </span>
+
+    <!-- Título -->
+    <h1 class="title">
+      Algo nuevo<br>llega al <em>campo.</em>
+    </h1>
+
+    <!-- Subtítulo -->
+    <p class="subtitle">
+      Estamos preparando algo que va a cambiar cómo trabajas el día a día en tu explotación. Apúntate y sé el primero en saberlo.
+    </p>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <!-- Formulario -->
+    <div class="form-wrap">
+      <label class="form-label" for="email-input">
+        Déjanos tu email y te avisamos en el lanzamiento
+      </label>
+      <div class="form-row">
+        <input
+          type="email"
+          id="email-input"
+          class="form-input"
+          placeholder="tu@email.com"
+          autocomplete="email"
+          aria-label="Tu dirección de email"
+          required
+        >
+        <button class="form-btn" id="form-btn" type="button">
+          Apuntarme
+        </button>
+      </div>
+      <p class="form-msg" id="form-msg" aria-live="polite" role="status"></p>
+    </div>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <!-- Footer mínimo -->
+    <p class="foot">
+      © <span id="year"></span> RedAgraria ·
+      <a href="mailto:hola@red-agraria.es">hola@red-agraria.es</a> ·
+      <a href="privacidad.html">Privacidad</a>
+    </p>
+
+  </main>
+
+  <script>
+    // ── Año dinámico ────────────────────────────────────
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ── Config Supabase ─────────────────────────────────
+    const SUPA_URL = 'https://dqtjkdnbbhkpdoznmijv.supabase.co';
+    const SUPA_KEY = 'sb_publishable_xHwb6HlpJe-rRYFiKJWdqg_7u_HUwXN';
+
+    // ── Guardar email ───────────────────────────────────
+    const input  = document.getElementById('email-input');
+    const btn    = document.getElementById('form-btn');
+    const msgEl  = document.getElementById('form-msg');
+
+    function setMsg(text, type) {
+      msgEl.textContent = text;
+      msgEl.className   = `form-msg form-msg--${type}`;
+    }
+
+    function validarEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    btn.addEventListener('click', async () => {
+      const email = input.value.trim();
+
+      if (!validarEmail(email)) {
+        setMsg('Introduce un email válido.', 'error');
+        input.focus();
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Guardando...';
+      setMsg('', '');
+
+      try {
+        const res = await fetch(`${SUPA_URL}/rest/v1/lista_espera`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPA_KEY,
+            'Authorization': `Bearer ${SUPA_KEY}`,
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ email, origen: 'web_coming_soon' })
+        });
+
+        if (res.status === 201) {
+          setMsg('✅ ¡Apuntado! Te avisaremos en el lanzamiento.', 'ok');
+          input.value = '';
+          btn.textContent = '¡Listo!';
+        } else if (res.status === 409) {
+          // Email duplicado (UNIQUE constraint)
+          setMsg('Ya estás en la lista. ¡Pronto tendrás noticias!', 'dup');
+          btn.disabled = false;
+          btn.textContent = 'Apuntarme';
+        } else {
+          throw new Error(`HTTP ${res.status}`);
+        }
+      } catch (err) {
+        console.error('Error guardando email:', err);
+        setMsg('Algo ha fallado. Inténtalo de nuevo o escríbenos.', 'error');
+        btn.disabled = false;
+        btn.textContent = 'Apuntarme';
+      }
+    });
+
+    // Enviar con Enter
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') btn.click();
+    });
+  </script>
+
+</body>
+</html>
