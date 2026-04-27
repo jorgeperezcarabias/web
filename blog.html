@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Noticias y artículos sobre ganadería, precios de lonja y mercados agrarios. RedAgraria — Plataforma Agrícola.">
+  <meta name="author" content="RedAgraria">
+  <meta property="og:title" content="Noticias — RedAgraria">
+  <meta property="og:description" content="Artículos sobre ganadería, precios de lonja y mercados agrarios.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://red-agraria.es/blog.html">
+  <meta property="og:image" content="https://red-agraria.es/assets/img/logo.svg">
+
+  <title>Noticias — RedAgraria</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/features.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/blog.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Inicio RedAgraria">
+        <img src="assets/img/logo.svg" alt="RedAgraria" height="48">
+      </a>
+      <nav class="navbar__links" aria-label="Navegación principal">
+        <a href="index.html#como-funciona">Cómo funciona</a>
+        <a href="index.html#funciones">Funciones</a>
+        <a href="index.html#para-quien">Para quién</a>
+        <a href="blog.html" aria-current="page">Noticias</a>
+        <a href="directorio.html">Directorio</a>
+      </nav>
+      <!-- TODO: reemplazar con número WhatsApp real -->
+      <a href="https://wa.me/34XXXXXXXXX" class="btn btn--primary btn--sm" target="_blank" rel="noopener">
+        Hablar con el bot
+      </a>
+      <button class="navbar__burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="navbar__mobile" id="mobile-menu" hidden aria-hidden="true">
+      <a href="index.html#como-funciona">Cómo funciona</a>
+      <a href="index.html#funciones">Funciones</a>
+      <a href="index.html#para-quien">Para quién</a>
+      <a href="blog.html">Noticias</a>
+      <a href="directorio.html">Directorio</a>
+      <!-- TODO: reemplazar con número WhatsApp real -->
+      <a href="https://wa.me/34XXXXXXXXX" class="btn btn--primary" target="_blank" rel="noopener">Hablar con el bot</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- CABECERA BLOG -->
+    <section class="page-header">
+      <div class="container page-header__inner">
+        <span class="section__eyebrow">Del campo a tu pantalla</span>
+        <h1 class="page-header__title">Noticias y artículos</h1>
+        <p class="page-header__sub">Mercados, ganadería y todo lo que mueve el campo español. Sin rodeos.</p>
+      </div>
+    </section>
+
+    <!-- FILTROS DE CATEGORÍA -->
+    <section class="blog-filters" aria-label="Filtrar artículos por categoría">
+      <div class="container">
+        <div class="filter-bar" id="filter-bar" role="tablist">
+          <button class="filter-btn filter-btn--active" data-cat="todos" role="tab" aria-selected="true">Todos</button>
+          <button class="filter-btn" data-cat="Mercados" role="tab" aria-selected="false">Mercados</button>
+          <button class="filter-btn" data-cat="Ganadería" role="tab" aria-selected="false">Ganadería</button>
+          <button class="filter-btn" data-cat="Plataforma" role="tab" aria-selected="false">Plataforma</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID DE ARTÍCULOS -->
+    <section class="section" aria-labelledby="blog-title">
+      <div class="container">
+        <div class="blog-grid" id="blog-grid" aria-live="polite">
+          <!-- Artículos cargados por JS desde blog.json -->
+          <div class="blog-loading" aria-label="Cargando artículos">
+            <div class="blog-spinner"></div>
+            <p>Cargando artículos...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTÍCULO COMPLETO (oculto hasta que se selecciona uno) -->
+    <div class="article-overlay" id="article-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="article-title">
+      <div class="article-modal">
+        <button class="article-close" id="article-close" aria-label="Cerrar artículo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="article-content" id="article-content">
+          <!-- Contenido dinámico -->
+        </div>
+        <div class="article-cta">
+          <p>¿Tienes dudas sobre mercados o precios?</p>
+          <!-- TODO: reemplazar con número WhatsApp real -->
+          <a href="https://wa.me/34XXXXXXXXX" class="btn btn--whatsapp btn--lg" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.849L.073 23.927l6.244-1.637A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.031-1.382l-.36-.214-3.733.979.995-3.648-.235-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+            Pregunta al bot
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA INFERIOR -->
+    <section class="section cta-section" aria-labelledby="blog-cta-title">
+      <div class="container cta-section__inner">
+        <div class="cta-section__content">
+          <h2 id="blog-cta-title" class="cta-section__title">¿Tienes dudas sobre el precio de tu ganado?</h2>
+          <p class="cta-section__sub">Consúltalo directamente por WhatsApp. Precio de lonja actualizado en segundos.</p>
+          <!-- TODO: reemplazar con número WhatsApp real -->
+          <a href="https://wa.me/34XXXXXXXXX?text=Hola%20RedAgraria%2C%20quiero%20saber%20el%20precio%20de%20la%20lonja" class="btn btn--whatsapp btn--xl" target="_blank" rel="noopener">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.849L.073 23.927l6.244-1.637A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.031-1.382l-.36-.214-3.733.979.995-3.648-.235-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+            Consultar por WhatsApp
+          </a>
+          <p class="cta-section__note">Sin coste · Sin registro · Respuesta en segundos</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/img/logo-dark.svg" alt="RedAgraria" height="40">
+        <p class="footer__tagline">El campo tiene sus propias respuestas.<br>Nosotros te las damos.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Navegación footer">
+        <div class="footer__col">
+          <h4>Plataforma</h4>
+          <a href="index.html#como-funciona">Cómo funciona</a>
+          <a href="index.html#funciones">Funciones</a>
+          <a href="index.html#para-quien">Para quién</a>
+          <a href="blog.html">Noticias</a>
+          <a href="directorio.html">Directorio</a>
+        </div>
+        <div class="footer__col">
+          <h4>Contacto</h4>
+          <!-- TODO: reemplazar con número WhatsApp real -->
+          <a href="https://wa.me/34XXXXXXXXX" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="mailto:hola@red-agraria.es">hola@red-agraria.es</a>
+        </div>
+        <div class="footer__col">
+          <h4>Legal</h4>
+          <a href="privacidad.html">Privacidad</a>
+          <a href="aviso-legal.html">Aviso legal</a>
+          <a href="cookies.html">Cookies</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© <span id="year"></span> RedAgraria. Todos los derechos reservados.</p>
+        <p>Hecho con 🌱 para el campo español.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/blog.js"></script>
+</body>
+</html>

@@ -96,3 +96,12 @@ web/
 - URLs internas actualizadas: redagraria.es -> red-agraria.es (og:url, og:image, email footer)
 - PENDIENTE: HTTPS (Enforce HTTPS en GitHub Pages cuando propague el certificado)
 - PENDIENTE: numero WhatsApp real
+
+### 2025-04 - blog.html completado
+- blog.html creado con cabecera, filtros por categoria y grid de cards
+- assets/data/blog.json: 3 articulos iniciales (Mercados, Plataforma, Ganaderia)
+- assets/css/blog.css: estilos completos (page-header, filtros, cards, overlay articulo)
+- assets/js/blog.js: carga JSON, filtros, render cards, modal articulo completo
+- Articulo modal con animacion, cierre con Escape/click fondo/boton
+- CTA WhatsApp al final de cada articulo y al pie de pagina
+- Sistema escalable: anadir articulo = solo editar blog.json
