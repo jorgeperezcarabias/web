@@ -105,3 +105,9 @@ web/
 - Articulo modal con animacion, cierre con Escape/click fondo/boton
 - CTA WhatsApp al final de cada articulo y al pie de pagina
 - Sistema escalable: anadir articulo = solo editar blog.json
+
+### 2025-04 - Favicon, HTTPS y pagina 404
+- favicon.svg movido a raiz del proyecto (mejor compatibilidad navegadores)
+- Links favicon actualizados en index.html y blog.html (icon + shortcut + apple-touch)
+- 404.html creado en raiz: pagina personalizada con logo, emoji animado y botones
+- HTTPS: pendiente activar 'Enforce HTTPS' en GitHub Pages (esperar propagacion certificado)

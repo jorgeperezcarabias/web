@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Página no encontrada — RedAgraria</title>
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, var(--green-50) 0%, var(--white) 60%);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .error-page__inner {
+      max-width: 520px;
+    }
+
+    .error-page__emoji {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 1.5rem;
+      animation: sway 3s ease-in-out infinite;
+    }
+    @keyframes sway {
+      0%, 100% { transform: rotate(-4deg); }
+      50%       { transform: rotate(4deg);  }
+    }
+
+    .error-page__code {
+      font-family: var(--font-display);
+      font-size: 7rem;
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--green-900), var(--green-500));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: .25rem;
+    }
+
+    .error-page__title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--green-900);
+      margin-bottom: 1rem;
+    }
+
+    .error-page__text {
+      font-size: 1.0625rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .error-page__actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .error-page__logo {
+      margin: 0 auto 2rem;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="error-page" role="main">
+    <div class="error-page__inner">
+
+      <img src="assets/img/logo.svg" alt="RedAgraria" height="44" class="error-page__logo">
+
+      <span class="error-page__emoji" aria-hidden="true">🌾</span>
+
+      <p class="error-page__code" aria-label="Error 404">404</p>
+
+      <h1 class="error-page__title">Esta página se perdió por el campo</h1>
+
+      <p class="error-page__text">
+        La página que buscas no existe o ha cambiado de sitio.<br>
+        Pero el bot sigue ahí, listo para ayudarte.
+      </p>
+
+      <div class="error-page__actions">
+        <a href="index.html" class="btn btn--primary btn--lg">
+          Volver al inicio
+        </a>
+        <!-- TODO: reemplazar con número WhatsApp real -->
+        <a href="https://wa.me/34XXXXXXXXX" class="btn btn--whatsapp btn--lg" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.849L.073 23.927l6.244-1.637A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.031-1.382l-.36-.214-3.733.979.995-3.648-.235-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+          Hablar con el bot
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Año automático por si se reutiliza en footer futuro
+    document.querySelectorAll('#year').forEach(el => {
+      el.textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
