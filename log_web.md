@@ -143,3 +143,10 @@ web/
   - rama dev  -> jorgeperezcarabias.github.io/web -> web completa
 - PENDIENTE: renombrar coming-soon.html a index.html en rama prod
 - PENDIENTE: configurar rama dev en GitHub Pages con URL diferente
+
+### 2025-04 - Despliegue prod completado
+- Rama prod configurada en GitHub Pages como fuente de red-agraria.es
+- index.html en prod = coming-soon.html
+- index-dev.html en prod = web completa (guardada pero no visible)
+- main sigue con la web completa para desarrollo
+- Flujo: desarrollar en main, mergear a prod cuando se quiera actualizar publica
