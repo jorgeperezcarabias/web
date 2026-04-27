@@ -3,376 +3,434 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="RedAgraria — La plataforma agrícola que conecta a ganaderos con precios de lonja, alertas y cálculos de beneficio directamente desde WhatsApp.">
-  <meta name="keywords" content="agricultura, ganadería, bot whatsapp, precios lonja, plataforma agraria, España">
-  <meta name="author" content="RedAgraria">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="RedAgraria — Plataforma Agrícola">
-  <meta property="og:description" content="Precios de lonja, alertas y cálculos de beneficio directamente desde WhatsApp. Sin apps, sin registros.">
+  <meta name="description" content="RedAgraria — La plataforma agrícola que está a punto de llegar. Apúntate para ser el primero en saberlo.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:title" content="RedAgraria — Próximamente">
+  <meta property="og:description" content="Algo nuevo llega al campo español. Sé el primero en saberlo.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://red-agraria.es">
-  <meta property="og:image" content="https://red-agraria.es/assets/img/logo.svg">
 
-  <title>RedAgraria — Plataforma Agrícola</title>
-
+  <title>RedAgraria — Próximamente</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="favicon.svg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/features.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
+  <style>
+    /* ── TOKENS ───────────────────────────────────────── */
+    :root {
+      --g900: #042b10;
+      --g800: #065f2e;
+      --g700: #166534;
+      --g600: #16a34a;
+      --g500: #22c55e;
+      --g400: #4ade80;
+      --g300: #86efac;
+      --g100: #dcfce7;
+      --g50:  #f0fdf4;
+      --gray: #6b7280;
+      --white: #ffffff;
+      --font-d: 'Playfair Display', Georgia, serif;
+      --font-b: 'Source Sans 3', system-ui, sans-serif;
+      --ease: .22s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── RESET ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { height: 100%; }
+    body {
+      font-family: var(--font-b);
+      min-height: 100%;
+      background: var(--g900);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ── FONDO ANIMADO ────────────────────────────────── */
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .bg__blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .18;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+    .bg__blob--1 {
+      width: 700px; height: 700px;
+      background: var(--g500);
+      top: -200px; right: -150px;
+      animation-duration: 22s;
+    }
+    .bg__blob--2 {
+      width: 500px; height: 500px;
+      background: var(--g400);
+      bottom: -150px; left: -100px;
+      animation-duration: 16s;
+      animation-direction: alternate-reverse;
+    }
+    .bg__blob--3 {
+      width: 300px; height: 300px;
+      background: var(--g300);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: .08;
+      animation-duration: 28s;
+    }
+    .bg__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(74,222,128,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74,222,128,.06) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.08); }
+    }
+
+    /* ── CONTENIDO ────────────────────────────────────── */
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      text-decoration: none;
+    }
+    .logo__icon {
+      width: 48px; height: 48px;
+    }
+    .logo__text {
+      font-family: var(--font-d);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--g300);
+      letter-spacing: -.02em;
+    }
+
+    /* Eyebrow */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--g400);
+      background: rgba(74,222,128,.1);
+      border: 1px solid rgba(74,222,128,.2);
+      padding: .35rem 1rem;
+      border-radius: 50px;
+    }
+    .eyebrow__dot {
+      width: 6px; height: 6px;
+      background: var(--g400);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(.8); }
+    }
+
+    /* Título */
+    .title {
+      font-family: var(--font-d);
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -.02em;
+      color: var(--white);
+    }
+    .title em {
+      font-style: italic;
+      color: var(--g400);
+    }
+
+    /* Subtítulo */
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--g300);
+      line-height: 1.75;
+      max-width: 420px;
+      opacity: .85;
+    }
+
+    /* ── FORMULARIO ───────────────────────────────────── */
+    .form-wrap {
+      width: 100%;
+      max-width: 420px;
+    }
+    .form-label {
+      display: block;
+      font-size: .8125rem;
+      font-weight: 500;
+      color: var(--g300);
+      margin-bottom: .6rem;
+      letter-spacing: .04em;
+    }
+    .form-row {
+      display: flex;
+      gap: .5rem;
+    }
+    .form-input {
+      flex: 1;
+      font-family: var(--font-b);
+      font-size: .9375rem;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 50px;
+      padding: .7rem 1.25rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color var(--ease), box-shadow var(--ease);
+    }
+    .form-input::placeholder { color: rgba(255,255,255,.35); }
+    .form-input:focus {
+      border-color: var(--g400);
+      box-shadow: 0 0 0 3px rgba(74,222,128,.15);
+    }
+    .form-btn {
+      font-family: var(--font-b);
+      font-size: .9375rem;
+      font-weight: 600;
+      background: var(--g500);
+      color: var(--g900);
+      border: none;
+      border-radius: 50px;
+      padding: .7rem 1.4rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
+      box-shadow: 0 4px 20px rgba(34,197,94,.3);
+    }
+    .form-btn:hover:not(:disabled) {
+      background: var(--g400);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 28px rgba(34,197,94,.4);
+    }
+    .form-btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    /* Mensajes de estado */
+    .form-msg {
+      margin-top: .75rem;
+      font-size: .875rem;
+      min-height: 1.4rem;
+      transition: opacity var(--ease);
+    }
+    .form-msg--ok    { color: var(--g400); }
+    .form-msg--error { color: #f87171; }
+    .form-msg--dup   { color: var(--g300); }
+
+    /* ── SEPARADOR ────────────────────────────────────── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(74,222,128,.2), transparent);
+    }
+
+    /* ── FOOTER MÍNIMO ────────────────────────────────── */
+    .foot {
+      font-size: .8rem;
+      color: rgba(255,255,255,.25);
+      margin-top: 1rem;
+    }
+    .foot a {
+      color: rgba(255,255,255,.35);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color var(--ease);
+    }
+    .foot a:hover { color: var(--g400); }
+  </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar" id="navbar">
-    <div class="container navbar__inner">
-      <a href="index.html" class="navbar__logo" aria-label="Inicio RedAgraria">
-        <img src="assets/img/logo.svg" alt="RedAgraria" height="48">
-      </a>
-      <nav class="navbar__links" aria-label="Navegación principal">
-        <a href="#como-funciona">Cómo funciona</a>
-        <a href="#funciones">Funciones</a>
-        <a href="#para-quien">Para quién</a>
-        <a href="blog.html">Noticias</a>
-        <a href="directorio.html">Directorio</a>
-      </nav>
-      <!-- TODO: reemplazar con número WhatsApp real (wa.me/34XXXXXXXXX) -->
-      <a href="https://wa.me/34XXXXXXXXX" class="btn btn--primary btn--sm" target="_blank" rel="noopener">
-        Hablar con el bot
-      </a>
-      <button class="navbar__burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
-        <span></span><span></span><span></span>
-      </button>
+  <div class="bg" aria-hidden="true">
+    <div class="bg__grid"></div>
+    <div class="bg__blob bg__blob--1"></div>
+    <div class="bg__blob bg__blob--2"></div>
+    <div class="bg__blob bg__blob--3"></div>
+  </div>
+
+  <main class="content" role="main">
+
+    <!-- Logo -->
+    <div class="logo" aria-label="RedAgraria">
+      <svg class="logo__icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="ls" x1="0.5" y1="1" x2="0.5" y2="0">
+            <stop offset="0%" stop-color="#166534"/>
+            <stop offset="100%" stop-color="#86efac"/>
+          </linearGradient>
+        </defs>
+        <line x1="28" y1="58" x2="38" y2="8"  stroke="url(#ls)" stroke-width="3" stroke-linecap="round"/>
+        <line x1="36" y1="38" x2="18" y2="28" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" opacity="0.9"/>
+        <line x1="37" y1="27" x2="16" y2="16" stroke="#86efac" stroke-width="1.7" stroke-linecap="round" opacity="0.7"/>
+        <line x1="35" y1="44" x2="48" y2="37" stroke="#4ade80" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
+        <line x1="36.5" y1="33" x2="50" y2="26" stroke="#4ade80" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
+        <circle cx="18" cy="28" r="3.5" fill="#4ade80"/>
+        <circle cx="16" cy="16" r="2.6" fill="#86efac"/>
+        <circle cx="48" cy="37" r="2.2" fill="#4ade80" opacity="0.55"/>
+        <circle cx="38" cy="8"  r="5"   fill="#4ade80"/>
+        <circle cx="38" cy="8"  r="2.5" fill="#ffffff" opacity="0.85"/>
+      </svg>
+      <span class="logo__text">RedAgraria</span>
     </div>
-    <div class="navbar__mobile" id="mobile-menu" hidden aria-hidden="true">
-      <a href="#como-funciona">Cómo funciona</a>
-      <a href="#funciones">Funciones</a>
-      <a href="#para-quien">Para quién</a>
-      <a href="blog.html">Noticias</a>
-      <a href="directorio.html">Directorio</a>
-      <!-- TODO: reemplazar con número WhatsApp real -->
-      <a href="https://wa.me/34XXXXXXXXX" class="btn btn--primary" target="_blank" rel="noopener">Hablar con el bot</a>
+
+    <!-- Eyebrow -->
+    <span class="eyebrow">
+      <span class="eyebrow__dot" aria-hidden="true"></span>
+      Próximamente
+    </span>
+
+    <!-- Título -->
+    <h1 class="title">
+      Algo nuevo<br>llega al <em>campo.</em>
+    </h1>
+
+    <!-- Subtítulo -->
+    <p class="subtitle">
+      Estamos preparando algo que va a cambiar cómo trabajas el día a día en tu explotación. Apúntate y sé el primero en saberlo.
+    </p>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <!-- Formulario -->
+    <div class="form-wrap">
+      <label class="form-label" for="email-input">
+        Déjanos tu email y te avisamos en el lanzamiento
+      </label>
+      <div class="form-row">
+        <input
+          type="email"
+          id="email-input"
+          class="form-input"
+          placeholder="tu@email.com"
+          autocomplete="email"
+          aria-label="Tu dirección de email"
+          required
+        >
+        <button class="form-btn" id="form-btn" type="button">
+          Apuntarme
+        </button>
+      </div>
+      <p class="form-msg" id="form-msg" aria-live="polite" role="status"></p>
     </div>
-  </header>
 
-  <main>
+    <div class="divider" aria-hidden="true"></div>
 
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero__bg" aria-hidden="true">
-        <div class="hero__blob hero__blob--1"></div>
-        <div class="hero__blob hero__blob--2"></div>
-        <div class="hero__grid"></div>
-      </div>
-      <div class="container hero__inner">
-        <div class="hero__content">
-          <span class="badge">🌱 Ahora disponible en WhatsApp</span>
-          <h1 id="hero-title" class="hero__title">
-            El campo tiene<br>
-            <em>sus propias respuestas.</em><br>
-            Nosotros te las damos.
-          </h1>
-          <p class="hero__sub">
-            RedAgraria es la plataforma que conecta a ganaderos y agricultores con precios de lonja, alertas y cálculos de beneficio al instante. Sin apps. Sin formularios. Solo WhatsApp.
-          </p>
-          <div class="hero__actions">
-            <!-- TODO: reemplazar con número WhatsApp real -->
-            <a href="https://wa.me/34XXXXXXXXX" class="btn btn--primary btn--lg" target="_blank" rel="noopener">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.849L.073 23.927l6.244-1.637A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.031-1.382l-.36-.214-3.733.979.995-3.648-.235-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
-              Consulta gratis ahora
-            </a>
-            <a href="#como-funciona" class="btn btn--ghost btn--lg">Ver cómo funciona</a>
-          </div>
-          <div class="hero__trust">
-            <span>🐄 Ganadería</span>
-            <span>💶 Precios lonja</span>
-            <span>📊 Cálculo beneficio</span>
-            <span>🔔 Alertas precio</span>
-          </div>
-        </div>
-        <div class="hero__visual" aria-hidden="true">
-          <div class="wamock">
-            <div class="wamock__bar">
-              <div class="wamock__avatar">🤖</div>
-              <div>
-                <div class="wamock__name">RedAgraria Bot</div>
-                <div class="wamock__status">en línea</div>
-              </div>
-            </div>
-            <div class="wamock__chat">
-              <div class="wamock__msg wamock__msg--out">
-                Hola, buenos días 👋 ¿A cuánto está el cerdo hoy en la lonja?
-                <span class="wamock__time">09:14</span>
-              </div>
-              <div class="wamock__msg wamock__msg--in">
-                Buenos días 🌱 El precio del <strong>cerdo cebado</strong> en Lonja de Salamanca está a <strong>1,842 €/kg</strong>. ¿Quieres que te avise si sube o baja de un umbral?
-                <span class="wamock__time">09:14 ✓✓</span>
-              </div>
-              <div class="wamock__msg wamock__msg--out">
-                Sí, avísame si baja de 1,80 €/kg.
-                <span class="wamock__time">09:15</span>
-              </div>
-              <div class="wamock__msg wamock__msg--in">
-                ✅ Alerta guardada. Te avisaré si el cerdo cebado baja de <strong>1,80 €/kg</strong>. También recibirás el precio actualizado cada lunes 👍
-                <span class="wamock__time">09:15 ✓✓</span>
-              </div>
-              <div class="wamock__typing">
-                <span></span><span></span><span></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a href="#como-funciona" class="hero__scroll" aria-label="Ir a cómo funciona">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </a>
-    </section>
-
-    <!-- CÓMO FUNCIONA -->
-    <section class="section section--light" id="como-funciona" aria-labelledby="cf-title">
-      <div class="container">
-        <div class="section__header">
-          <span class="section__eyebrow">Simple como hablar con un vecino</span>
-          <h2 id="cf-title" class="section__title">Cómo funciona RedAgraria</h2>
-          <p class="section__sub">Sin instalaciones, sin registros, sin complicaciones. Solo WhatsApp.</p>
-        </div>
-        <ol class="steps" aria-label="Pasos para usar RedAgraria">
-          <li class="step">
-            <div class="step__num" aria-hidden="true">01</div>
-            <div class="step__icon" aria-hidden="true">📲</div>
-            <h3 class="step__title">Abre WhatsApp</h3>
-            <p class="step__text">Busca el contacto de RedAgraria o pulsa el botón de esta web. No hace falta ninguna app extra.</p>
-          </li>
-          <li class="step">
-            <div class="step__num" aria-hidden="true">02</div>
-            <div class="step__icon" aria-hidden="true">💬</div>
-            <h3 class="step__title">Escribe tu consulta</h3>
-            <p class="step__text">Pregunta como hablas tú: "¿A cuánto está el cerdo hoy?", "¿Cuánto ganaría con 20 terneros de 300 kg?", "Avísame si el vacuno sube de 5 €/kg."</p>
-          </li>
-          <li class="step">
-            <div class="step__num" aria-hidden="true">03</div>
-            <div class="step__icon" aria-hidden="true">⚡</div>
-            <h3 class="step__title">Respuesta al instante</h3>
-            <p class="step__text">El bot analiza tu pregunta y te da una respuesta práctica en segundos, con datos reales de lonja. Sin esperar, sin colas.</p>
-          </li>
-          <li class="step">
-            <div class="step__num" aria-hidden="true">04</div>
-            <div class="step__icon" aria-hidden="true">🔔</div>
-            <h3 class="step__title">Alertas automáticas</h3>
-            <p class="step__text">Configura tus umbrales de precio. Cada lunes recibirás la lonja actualizada y te avisaremos si el mercado se mueve a tu favor o en contra.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- FUNCIONES DEL BOT -->
-    <section class="section" id="funciones" aria-labelledby="fn-title">
-      <div class="container">
-        <div class="section__header">
-          <span class="section__eyebrow">Lo que sabe hacer hoy</span>
-          <h2 id="fn-title" class="section__title">Las funciones del bot</h2>
-          <p class="section__sub">RedAgraria crece cada semana. Estas son las funciones disponibles ahora mismo.</p>
-        </div>
-        <div class="features">
-
-          <div class="feature-card">
-            <div class="feature-card__icon" aria-hidden="true">💶</div>
-            <h3 class="feature-card__title">Precios de lonja en tiempo real</h3>
-            <p class="feature-card__text">Consulta el precio actualizado de vacuno, porcino, ovino, caprino y cereales directamente desde la Lonja de Salamanca. Los datos se actualizan automáticamente cada lunes.</p>
-          </div>
-
-          <div class="feature-card feature-card--highlight">
-            <div class="feature-card__icon" aria-hidden="true">📊</div>
-            <h3 class="feature-card__title">Cálculo de beneficio estimado</h3>
-            <p class="feature-card__text">Dile el peso de tu lote y el tipo de ganado. El bot calcula el beneficio estimado usando el precio de lonja y el rendimiento medio. Siempre con el aviso de que el precio final puede variar por intermediarios y transporte.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-card__icon" aria-hidden="true">🔔</div>
-            <h3 class="feature-card__title">Alertas de precio personalizadas</h3>
-            <p class="feature-card__text">Define un umbral y el bot te avisa por WhatsApp si el precio de tu producto sube o baja de ese límite. Además, cada lunes recibirás el precio actualizado de los productos que sigas.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-card__icon" aria-hidden="true">🤖</div>
-            <h3 class="feature-card__title">Menús y botones interactivos</h3>
-            <p class="feature-card__text">No hace falta saber cómo preguntar. El bot te guía con menús y botones: elige el sector, la categoría y el producto paso a paso, sin teclear más de lo necesario.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-card__icon" aria-hidden="true">💬</div>
-            <h3 class="feature-card__title">Lenguaje natural con IA</h3>
-            <p class="feature-card__text">Puedes preguntar como hablas tú: "¿a cómo está el cochino?" o "¿cuánto vale el ternero?". Si el bot no reconoce la pregunta al vuelo, la pasa a inteligencia artificial para resolverla igualmente.</p>
-          </div>
-
-          <div class="feature-card feature-card--soon">
-            <div class="feature-card__badge">Próximamente</div>
-            <div class="feature-card__icon" aria-hidden="true">🌱</div>
-            <h3 class="feature-card__title">Más lonjas y más sectores</h3>
-            <p class="feature-card__text">Estamos incorporando nuevas lonjas y ampliando la cobertura a hortalizas, frutales, aceite de oliva y mucho más. El bot crece contigo.</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- PARA QUIÉN ES -->
-    <section class="section section--dark" id="para-quien" aria-labelledby="pq-title">
-      <div class="container">
-        <div class="section__header section__header--light">
-          <span class="section__eyebrow section__eyebrow--light">Hecho para gente del campo</span>
-          <h2 id="pq-title" class="section__title section__title--light">¿Eres tú?</h2>
-          <p class="section__sub section__sub--light">RedAgraria está pensado para todos los que viven del campo, ya sea una explotación grande o pequeña.</p>
-        </div>
-        <div class="profiles">
-          <article class="profile-card">
-            <div class="profile-card__icon" aria-hidden="true">🐄</div>
-            <h3 class="profile-card__title">Ganaderos</h3>
-            <p class="profile-card__text">Vacuno, porcino, ovino, caprino… Consulta precios de lonja al momento, calcula el beneficio estimado de tu lote y recibe alertas cuando el mercado se mueva.</p>
-            <ul class="profile-card__list" aria-label="Ejemplos de consultas para ganaderos">
-              <li>Precio actualizado de cualquier especie</li>
-              <li>Cálculo de beneficio por peso y lote</li>
-              <li>Alertas semanales y por umbral</li>
-              <li>Historial de precios en tu chat</li>
-            </ul>
-          </article>
-          <article class="profile-card profile-card--featured">
-            <div class="profile-card__badge">Más consultado</div>
-            <div class="profile-card__icon" aria-hidden="true">🌾</div>
-            <h3 class="profile-card__title">Cerealistas y agricultores</h3>
-            <p class="profile-card__text">Trigo, cebada, maíz, girasol… Accede al precio de lonja de cereales y oleaginosas. Sin llamadas, sin esperas, directo desde WhatsApp.</p>
-            <ul class="profile-card__list" aria-label="Ejemplos de consultas para cerealistas">
-              <li>Precio del trigo y cebada hoy</li>
-              <li>Comparativa entre campañas</li>
-              <li>Alerta cuando el precio supera tu objetivo</li>
-              <li>Actualización automática cada lunes</li>
-            </ul>
-          </article>
-          <article class="profile-card">
-            <div class="profile-card__icon" aria-hidden="true">🚜</div>
-            <h3 class="profile-card__title">Cooperativas y técnicos</h3>
-            <p class="profile-card__text">Para técnicos agrarios y cooperativas que quieren dar un servicio de información de mercados rápido y fiable a sus socios, sin intermediarios.</p>
-            <ul class="profile-card__list" aria-label="Ejemplos de consultas para cooperativas">
-              <li>Información de mercados en tiempo real</li>
-              <li>Alertas masivas a socios por WhatsApp</li>
-              <li>Herramienta de apoyo a la decisión de venta</li>
-              <li>Sin necesidad de apps ni formación técnica</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIOS -->
-    <section class="section section--light" id="testimonios" aria-labelledby="test-title">
-      <div class="container">
-        <div class="section__header">
-          <span class="section__eyebrow">Lo que dicen del campo</span>
-          <h2 id="test-title" class="section__title">Ganaderos que ya lo usan</h2>
-        </div>
-        <div class="testimonials">
-          <blockquote class="testimonial">
-            <p class="testimonial__text">"Le puse una alerta en el vacuno y al tercer día me llegó el aviso de que había bajado. Vendí antes de que cayera más. Me ahorró un buen dinero."</p>
-            <footer class="testimonial__footer">
-              <div class="testimonial__avatar" aria-hidden="true">👨‍🌾</div>
-              <div>
-                <cite class="testimonial__name">Antonio R.</cite>
-                <span class="testimonial__role">Ganadero de vacuno, Salamanca</span>
-              </div>
-            </footer>
-          </blockquote>
-          <blockquote class="testimonial testimonial--featured">
-            <p class="testimonial__text">"Lo uso para ver el precio del cerdo cada mañana antes de salir al mercado. Me ahorra muchas llamadas y siempre está actualizado con la lonja real."</p>
-            <footer class="testimonial__footer">
-              <div class="testimonial__avatar" aria-hidden="true">👩‍🌾</div>
-              <div>
-                <cite class="testimonial__name">Mari Carmen L.</cite>
-                <span class="testimonial__role">Ganadera de porcino, Extremadura</span>
-              </div>
-            </footer>
-          </blockquote>
-          <blockquote class="testimonial">
-            <p class="testimonial__text">"Le pregunto cuánto me daría por mis corderos con el precio de hoy y me da el cálculo al momento. Antes tenía que llamar a varios sitios para saberlo."</p>
-            <footer class="testimonial__footer">
-              <div class="testimonial__avatar" aria-hidden="true">🧑‍🌾</div>
-              <div>
-                <cite class="testimonial__name">Francisco M.</cite>
-                <span class="testimonial__role">Ganadero ovino, Castilla-La Mancha</span>
-              </div>
-            </footer>
-          </blockquote>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA WHATSAPP -->
-    <section class="section cta-section" aria-labelledby="cta-title">
-      <div class="container cta-section__inner">
-        <div class="cta-section__content">
-          <h2 id="cta-title" class="cta-section__title">¿Cuánto está pagando la lonja hoy?</h2>
-          <p class="cta-section__sub">Escríbenos por WhatsApp y lo sabes en segundos. Sin registro, sin datos, sin complicaciones.</p>
-          <!-- TODO: reemplazar con número WhatsApp real (formato internacional, sin espacios ni +) -->
-          <a href="https://wa.me/34XXXXXXXXX?text=Hola%20RedAgraria%2C%20quiero%20saber%20el%20precio%20de%20la%20lonja" class="btn btn--whatsapp btn--xl" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.849L.073 23.927l6.244-1.637A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.031-1.382l-.36-.214-3.733.979.995-3.648-.235-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
-            Consultar por WhatsApp
-          </a>
-          <p class="cta-section__note">Sin coste · Sin registro · Respuesta en segundos</p>
-        </div>
-        <div class="cta-section__deco" aria-hidden="true">
-          <span class="cta-deco">🌾</span>
-          <span class="cta-deco cta-deco--2">🌿</span>
-          <span class="cta-deco cta-deco--3">☀️</span>
-        </div>
-      </div>
-    </section>
+    <!-- Footer mínimo -->
+    <p class="foot">
+      © <span id="year"></span> RedAgraria ·
+      <a href="mailto:hola@red-agraria.es">hola@red-agraria.es</a> ·
+      <a href="privacidad.html">Privacidad</a>
+    </p>
 
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer" role="contentinfo">
-    <div class="container footer__inner">
-      <div class="footer__brand">
-        <img src="assets/img/logo-dark.svg" alt="RedAgraria" height="40">
-        <p class="footer__tagline">El campo tiene sus propias respuestas.<br>Nosotros te las damos.</p>
-      </div>
-      <nav class="footer__nav" aria-label="Navegación footer">
-        <div class="footer__col">
-          <h4>Plataforma</h4>
-          <a href="#como-funciona">Cómo funciona</a>
-          <a href="#funciones">Funciones</a>
-          <a href="#para-quien">Para quién</a>
-          <a href="blog.html">Noticias</a>
-          <a href="directorio.html">Directorio</a>
-        </div>
-        <div class="footer__col">
-          <h4>Contacto</h4>
-          <!-- TODO: reemplazar con número WhatsApp real -->
-          <a href="https://wa.me/34XXXXXXXXX" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="mailto:hola@red-agraria.es">hola@red-agraria.es</a>
-        </div>
-        <div class="footer__col">
-          <h4>Legal</h4>
-          <a href="privacidad.html">Privacidad</a>
-          <a href="aviso-legal.html">Aviso legal</a>
-          <a href="cookies.html">Cookies</a>
-        </div>
-      </nav>
-    </div>
-    <div class="footer__bottom">
-      <div class="container">
-        <p>© <span id="year"></span> RedAgraria. Todos los derechos reservados.</p>
-        <p>Hecho con 🌱 para el campo español.</p>
-      </div>
-    </div>
-  </footer>
+  <script>
+    // ── Año dinámico ────────────────────────────────────
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-  <script src="assets/js/main.js"></script>
+    // ── Config Supabase ─────────────────────────────────
+    const SUPA_URL = 'https://dqtjkdnbbhkpdoznmijv.supabase.co';
+    const SUPA_KEY = 'sb_publishable_xHwb6HlpJe-rRYFiKJWdqg_7u_HUwXN';
+
+    // ── Guardar email ───────────────────────────────────
+    const input  = document.getElementById('email-input');
+    const btn    = document.getElementById('form-btn');
+    const msgEl  = document.getElementById('form-msg');
+
+    function setMsg(text, type) {
+      msgEl.textContent = text;
+      msgEl.className   = `form-msg form-msg--${type}`;
+    }
+
+    function validarEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    btn.addEventListener('click', async () => {
+      const email = input.value.trim();
+
+      if (!validarEmail(email)) {
+        setMsg('Introduce un email válido.', 'error');
+        input.focus();
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Guardando...';
+      setMsg('', '');
+
+      try {
+        const res = await fetch(`${SUPA_URL}/rest/v1/lista_espera`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPA_KEY,
+            'Authorization': `Bearer ${SUPA_KEY}`,
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ email, origen: 'web_coming_soon' })
+        });
+
+        if (res.status === 201) {
+          setMsg('✅ ¡Apuntado! Te avisaremos en el lanzamiento.', 'ok');
+          input.value = '';
+          btn.textContent = '¡Listo!';
+        } else if (res.status === 409) {
+          // Email duplicado (UNIQUE constraint)
+          setMsg('Ya estás en la lista. ¡Pronto tendrás noticias!', 'dup');
+          btn.disabled = false;
+          btn.textContent = 'Apuntarme';
+        } else {
+          throw new Error(`HTTP ${res.status}`);
+        }
+      } catch (err) {
+        console.error('Error guardando email:', err);
+        setMsg('Algo ha fallado. Inténtalo de nuevo o escríbenos.', 'error');
+        btn.disabled = false;
+        btn.textContent = 'Apuntarme';
+      }
+    });
+
+    // Enviar con Enter
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') btn.click();
+    });
+  </script>
+
 </body>
 </html>
