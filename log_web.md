@@ -111,3 +111,12 @@ web/
 - Links favicon actualizados en index.html y blog.html (icon + shortcut + apple-touch)
 - 404.html creado en raiz: pagina personalizada con logo, emoji animado y botones
 - HTTPS: pendiente activar 'Enforce HTTPS' en GitHub Pages (esperar propagacion certificado)
+
+### 2025-04 - Paginas legales
+- aviso-legal.html: LSSICE, propiedad intelectual, responsabilidad, jurisdiccion
+- privacidad.html: RGPD completo (responsable, datos, finalidades, proveedores, derechos)
+  - Proveedores documentados: Meta, Supabase, Google Cloud, GitHub
+  - Tabla finalidades con bases legales
+- cookies.html: sin cookies propias, solo Google Fonts tecnica, instrucciones navegadores
+- assets/css/legal.css: estilos compartidos (cabecera, secciones, tabla, nav entre paginas)
+- TODO en las tres paginas: rellenar NIF/CIF, razon social y domicilio cuando se decida figura juridica
