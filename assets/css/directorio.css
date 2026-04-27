@@ -1,0 +1,275 @@
+/* directorio.css — RedAgraria */
+
+/* ─── CONTROLES (filtros + buscador) ─────────────────── */
+.dir-controls {
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 1.25rem 0;
+  position: sticky;
+  top: 68px;
+  z-index: 20;
+  box-shadow: var(--shadow-sm);
+}
+.dir-controls__inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Buscador */
+.dir-search {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 50px;
+  padding: .45rem 1rem;
+  flex: 1;
+  min-width: 200px;
+  max-width: 320px;
+  color: var(--gray-400);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.dir-search:focus-within {
+  border-color: var(--green-400);
+  box-shadow: 0 0 0 3px rgba(74,222,128,.15);
+  color: var(--gray-600);
+}
+.dir-search input {
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+  font-size: .9rem;
+  color: var(--gray-800);
+  outline: none;
+  width: 100%;
+}
+.dir-search input::placeholder { color: var(--gray-400); }
+
+/* Filtros sector */
+.dir-filters {
+  display: flex;
+  gap: .4rem;
+  flex-wrap: wrap;
+}
+
+/* Contador */
+.dir-count {
+  font-size: .8125rem;
+  color: var(--gray-400);
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+/* ─── LAYOUT MAPA + LISTA ─────────────────────────────── */
+.dir-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  height: calc(100vh - 68px - 80px);
+  min-height: 500px;
+}
+
+/* ─── MAPA ────────────────────────────────────────────── */
+.dir-map-wrap {
+  position: relative;
+  background: var(--green-50);
+}
+#map {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Personalización marcadores Leaflet */
+.leaflet-popup-content-wrapper {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-md) !important;
+  font-family: var(--font-body) !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+.leaflet-popup-content {
+  margin: 0 !important;
+  width: 220px !important;
+}
+.popup-inner {
+  padding: 1rem;
+}
+.popup-sector {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--green-600);
+  background: var(--green-50);
+  padding: .15rem .6rem;
+  border-radius: 50px;
+  border: 1px solid #bbf7d0;
+  display: inline-block;
+  margin-bottom: .5rem;
+}
+.popup-nombre {
+  font-family: var(--font-display);
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--green-900);
+  margin-bottom: .25rem;
+}
+.popup-loc {
+  font-size: .8rem;
+  color: var(--gray-400);
+  margin-bottom: .6rem;
+}
+.popup-desc {
+  font-size: .8125rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+
+/* Icono marcador personalizado */
+.marker-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border: 2px solid var(--white);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── LISTA LATERAL ───────────────────────────────────── */
+.dir-list {
+  background: var(--gray-50);
+  border-left: 1px solid var(--gray-200);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: var(--green-300) transparent;
+}
+
+#dir-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+
+/* Card del directorio */
+.dir-card {
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 1.1rem 1.25rem;
+  cursor: pointer;
+  transition: background var(--transition), border-left var(--transition);
+  border-left: 3px solid transparent;
+}
+.dir-card:hover {
+  background: var(--green-50);
+  border-left-color: var(--green-500);
+}
+.dir-card--active {
+  background: var(--green-50);
+  border-left-color: var(--green-600);
+}
+
+.dir-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-bottom: .35rem;
+}
+.dir-card__nombre {
+  font-family: var(--font-display);
+  font-size: .9375rem;
+  font-weight: 700;
+  color: var(--green-900);
+  line-height: 1.3;
+}
+.dir-card__sector {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--green-600);
+  background: var(--green-50);
+  border: 1px solid #bbf7d0;
+  padding: .15rem .55rem;
+  border-radius: 50px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.dir-card__loc {
+  font-size: .8125rem;
+  color: var(--gray-400);
+  margin-bottom: .35rem;
+}
+.dir-card__loc svg { display: inline; vertical-align: middle; margin-right: 3px; }
+.dir-card__desc {
+  font-size: .8125rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Loading y empty */
+.dir-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 1rem;
+  color: var(--gray-400);
+  font-size: .9rem;
+}
+.dir-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--gray-400);
+}
+.dir-empty p:first-child { font-size: 2rem; margin-bottom: .5rem; }
+
+/* CTA unirse al directorio */
+.dir-join {
+  padding: 1.25rem;
+  background: var(--white);
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+.dir-join__text {
+  font-size: .875rem;
+  color: var(--gray-600);
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .dir-layout {
+    grid-template-columns: 1fr 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dir-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 320px auto;
+    height: auto;
+  }
+  .dir-map-wrap { height: 320px; }
+  .dir-list { max-height: 60vh; }
+  .dir-controls { top: 60px; }
+  .dir-controls__inner { flex-direction: column; align-items: stretch; }
+  .dir-search { max-width: 100%; }
+  .dir-count { margin-left: 0; }
+}

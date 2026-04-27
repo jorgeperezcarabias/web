@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Directorio de ganaderos y agricultores de RedAgraria. Encuentra productores por zona, sector y tipo de explotación en el mapa.">
+  <meta name="author" content="RedAgraria">
+  <meta property="og:title" content="Directorio de productores — RedAgraria">
+  <meta property="og:description" content="Encuentra ganaderos y agricultores por zona y sector en el mapa de RedAgraria.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://red-agraria.es/directorio.html">
+  <meta property="og:image" content="https://red-agraria.es/assets/img/logo.svg">
+
+  <title>Directorio — RedAgraria</title>
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Leaflet.js -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/directorio.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Inicio RedAgraria">
+        <img src="assets/img/logo.svg" alt="RedAgraria" height="48">
+      </a>
+      <nav class="navbar__links" aria-label="Navegación principal">
+        <a href="index.html#como-funciona">Cómo funciona</a>
+        <a href="index.html#funciones">Funciones</a>
+        <a href="index.html#para-quien">Para quién</a>
+        <a href="blog.html">Noticias</a>
+        <a href="directorio.html" aria-current="page">Directorio</a>
+      </nav>
+      <!-- TODO: reemplazar con número WhatsApp real -->
+      <a href="https://wa.me/34XXXXXXXXX" class="btn btn--primary btn--sm" target="_blank" rel="noopener">
+        Hablar con el bot
+      </a>
+      <button class="navbar__burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="navbar__mobile" id="mobile-menu" hidden aria-hidden="true">
+      <a href="index.html#como-funciona">Cómo funciona</a>
+      <a href="index.html#funciones">Funciones</a>
+      <a href="index.html#para-quien">Para quién</a>
+      <a href="blog.html">Noticias</a>
+      <a href="directorio.html">Directorio</a>
+      <!-- TODO: reemplazar con número WhatsApp real -->
+      <a href="https://wa.me/34XXXXXXXXX" class="btn btn--primary" target="_blank" rel="noopener">Hablar con el bot</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- CABECERA -->
+    <div class="legal-header">
+      <div class="container">
+        <p class="section__eyebrow">Red de productores</p>
+        <h1 class="legal-header__title">Directorio de productores</h1>
+        <p class="legal-header__meta">Ganaderos y agricultores que usan RedAgraria en toda España</p>
+      </div>
+    </div>
+
+    <!-- FILTROS + BUSCADOR -->
+    <div class="dir-controls">
+      <div class="container dir-controls__inner">
+
+        <div class="dir-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input
+            type="search"
+            id="dir-search"
+            placeholder="Buscar por provincia o localidad..."
+            aria-label="Buscar productores por provincia o localidad"
+          >
+        </div>
+
+        <div class="dir-filters" role="group" aria-label="Filtrar por sector">
+          <button class="filter-btn filter-btn--active" data-sector="todos">Todos</button>
+          <button class="filter-btn" data-sector="Vacuno">🐄 Vacuno</button>
+          <button class="filter-btn" data-sector="Porcino">🐷 Porcino</button>
+          <button class="filter-btn" data-sector="Ovino">🐑 Ovino</button>
+          <button class="filter-btn" data-sector="Caprino">🐐 Caprino</button>
+          <button class="filter-btn" data-sector="Cereales">🌾 Cereales</button>
+        </div>
+
+        <div class="dir-count" aria-live="polite" id="dir-count">
+          Cargando...
+        </div>
+
+      </div>
+    </div>
+
+    <!-- LAYOUT: MAPA + LISTA -->
+    <div class="dir-layout">
+
+      <!-- MAPA -->
+      <div class="dir-map-wrap">
+        <div id="map" aria-label="Mapa de productores de RedAgraria" role="application"></div>
+      </div>
+
+      <!-- LISTA DE CARDS -->
+      <aside class="dir-list" aria-label="Lista de productores">
+        <div id="dir-cards">
+          <!-- Cards renderizadas por JS -->
+          <div class="dir-loading">
+            <div class="blog-spinner"></div>
+            <p>Cargando productores...</p>
+          </div>
+        </div>
+
+        <!-- CTA para aparecer en el directorio -->
+        <div class="dir-join">
+          <p class="dir-join__text">¿Quieres aparecer en el directorio?</p>
+          <!-- TODO: reemplazar con número WhatsApp real -->
+          <a href="https://wa.me/34XXXXXXXXX?text=Hola%20RedAgraria%2C%20quiero%20aparecer%20en%20el%20directorio" class="btn btn--primary btn--sm" target="_blank" rel="noopener">
+            Escríbenos por WhatsApp
+          </a>
+        </div>
+      </aside>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/img/logo-dark.svg" alt="RedAgraria" height="40">
+        <p class="footer__tagline">El campo tiene sus propias respuestas.<br>Nosotros te las damos.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Navegación footer">
+        <div class="footer__col">
+          <h4>Plataforma</h4>
+          <a href="index.html#como-funciona">Cómo funciona</a>
+          <a href="index.html#funciones">Funciones</a>
+          <a href="index.html#para-quien">Para quién</a>
+          <a href="blog.html">Noticias</a>
+          <a href="directorio.html">Directorio</a>
+        </div>
+        <div class="footer__col">
+          <h4>Contacto</h4>
+          <!-- TODO: reemplazar con número WhatsApp real -->
+          <a href="https://wa.me/34XXXXXXXXX" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="mailto:hola@red-agraria.es">hola@red-agraria.es</a>
+        </div>
+        <div class="footer__col">
+          <h4>Legal</h4>
+          <a href="privacidad.html">Privacidad</a>
+          <a href="aviso-legal.html">Aviso legal</a>
+          <a href="cookies.html">Cookies</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© <span id="year"></span> RedAgraria. Todos los derechos reservados.</p>
+        <p>Hecho con 🌱 para el campo español.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Leaflet.js -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN2I/tU=" crossorigin=""></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/directorio.js"></script>
+</body>
+</html>

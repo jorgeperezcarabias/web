@@ -1,0 +1,74 @@
+[
+  {
+    "id": "001",
+    "nombre": "Ganadería Los Arribes",
+    "tipo": "Ganadero",
+    "sector": "Vacuno",
+    "provincia": "Salamanca",
+    "localidad": "Aldeadávila de la Ribera",
+    "lat": 41.2167,
+    "lng": -6.5333,
+    "descripcion": "Explotación de vacuno de carne con raza Morucha. Venta directa de terneros.",
+    "contacto": "Por WhatsApp"
+  },
+  {
+    "id": "002",
+    "nombre": "Porcino Sierra Norte",
+    "tipo": "Ganadero",
+    "sector": "Porcino",
+    "provincia": "Sevilla",
+    "localidad": "Cazalla de la Sierra",
+    "lat": 37.9333,
+    "lng": -5.7167,
+    "descripcion": "Granja de porcino ibérico extensivo en montanera. Producción ecológica.",
+    "contacto": "Por WhatsApp"
+  },
+  {
+    "id": "003",
+    "nombre": "Ovino Castellano Tierra de Campos",
+    "tipo": "Ganadero",
+    "sector": "Ovino",
+    "provincia": "Valladolid",
+    "localidad": "Medina de Rioseco",
+    "lat": 41.8833,
+    "lng": -5.05,
+    "descripcion": "Rebaño de ovino churro. Producción de leche y cordero lechal.",
+    "contacto": "Por WhatsApp"
+  },
+  {
+    "id": "004",
+    "nombre": "Cereales La Mancha",
+    "tipo": "Agricultor",
+    "sector": "Cereales",
+    "provincia": "Ciudad Real",
+    "localidad": "Alcázar de San Juan",
+    "lat": 39.3833,
+    "lng": -3.2,
+    "descripcion": "Explotación cerealista de secano. Trigo, cebada y girasol.",
+    "contacto": "Por WhatsApp"
+  },
+  {
+    "id": "005",
+    "nombre": "Caprino Extremeño",
+    "tipo": "Ganadero",
+    "sector": "Caprino",
+    "provincia": "Cáceres",
+    "localidad": "Trujillo",
+    "lat": 39.4667,
+    "lng": -5.8833,
+    "descripcion": "Ganado caprino de raza Verata. Producción de leche para queso artesano.",
+    "contacto": "Por WhatsApp"
+  },
+  {
+    "id": "006",
+    "nombre": "Vacuno Galicia Verde",
+    "tipo": "Ganadero",
+    "sector": "Vacuno",
+    "provincia": "Lugo",
+    "localidad": "Chantada",
+    "lat": 42.6,
+    "lng": -7.7667,
+    "descripcion": "Ganadería de vacuno de leche frisona. Producción media de 9.500 litros/vaca/año.",
+    "contacto": "Por WhatsApp"
+  }
+]

@@ -120,3 +120,15 @@ web/
 - cookies.html: sin cookies propias, solo Google Fonts tecnica, instrucciones navegadores
 - assets/css/legal.css: estilos compartidos (cabecera, secciones, tabla, nav entre paginas)
 - TODO en las tres paginas: rellenar NIF/CIF, razon social y domicilio cuando se decida figura juridica
+
+### 2025-04 - SEO basico y directorio con mapa
+- sitemap.xml creado con todas las paginas y prioridades
+- robots.txt creado (Allow todo, Disallow 404, Sitemap apuntado)
+- directorio.html: mapa Leaflet.js + lista lateral + filtros por sector + buscador
+- directorio.json: 6 productores de ejemplo (vacuno, porcino, ovino, caprino, cereales)
+- directorio.css: layout mapa+lista, marcadores, cards, filtros, responsive
+- directorio.js: carga JSON, filtros, busqueda con debounce, marcadores SVG por sector
+- Iconos de marcador personalizados por sector con emoji y color
+- Interaccion bidireccional: click card centra mapa, click marcador activa card
+- PENDIENTE: registrar sitemap.xml en Google Search Console
+- PENDIENTE: anadir productores reales al directorio.json

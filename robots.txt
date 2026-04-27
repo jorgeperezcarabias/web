@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Páginas legales: permitidas pero con baja prioridad
+Allow: /aviso-legal.html
+Allow: /privacidad.html
+Allow: /cookies.html
+
+# No indexar la página de error
+Disallow: /404.html
+
+# Sitemap
+Sitemap: https://red-agraria.es/sitemap.xml
