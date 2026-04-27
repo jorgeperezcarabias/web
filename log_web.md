@@ -87,3 +87,12 @@ web/
 - assets/css/features.css creado con estilos de .features y .feature-card
 - Navbar y footer actualizados con enlace a #funciones
 - PENDIENTE: numero WhatsApp real (Meta aun sin metodo de pago)
+
+### 2025-04 - Despliegue en produccion
+- Repo GitHub hecho publico: github.com/jorgeperezcarabias/web
+- GitHub Pages activado: jorgeperezcarabias.github.io/web
+- Dominio red-agraria.es conectado via DNS en Hostinger (4x registros A + CNAME www)
+- Web en produccion: http://red-agraria.es
+- URLs internas actualizadas: redagraria.es -> red-agraria.es (og:url, og:image, email footer)
+- PENDIENTE: HTTPS (Enforce HTTPS en GitHub Pages cuando propague el certificado)
+- PENDIENTE: numero WhatsApp real
