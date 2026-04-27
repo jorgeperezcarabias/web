@@ -132,3 +132,14 @@ web/
 - Interaccion bidireccional: click card centra mapa, click marcador activa card
 - PENDIENTE: registrar sitemap.xml en Google Search Console
 - PENDIENTE: anadir productores reales al directorio.json
+
+### 2025-04 - Pagina coming-soon + estrategia de ramas
+- coming-soon.html creado: fondo oscuro animado, logo, titulo misterioso, formulario email
+- Formulario conectado a Supabase tabla lista_espera (INSERT publico, RLS activado)
+- Tabla lista_espera creada en Supabase: id, email UNIQUE, created_at, origen
+- Manejo de duplicados (409), validacion email, estado del boton
+- Estrategia de visibilidad:
+  - rama prod -> red-agraria.es -> coming-soon.html como index
+  - rama dev  -> jorgeperezcarabias.github.io/web -> web completa
+- PENDIENTE: renombrar coming-soon.html a index.html en rama prod
+- PENDIENTE: configurar rama dev en GitHub Pages con URL diferente
