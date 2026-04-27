@@ -1,0 +1,4 @@
+/* navbar__mobile oculto por defecto — regla defensiva global */
+.navbar__mobile[hidden] {
+  display: none !important;
+}
