@@ -1,10 +1,14 @@
 /* directorio.css — RedAgraria */
 
+/* ─── CABECERA (reutiliza legal-header de legal.css) ──── */
+/* La cabecera usa .legal-header definido en legal.css     */
+/* Aquí solo sobreescribimos lo necesario                  */
+
 /* ─── CONTROLES (filtros + buscador) ─────────────────── */
 .dir-controls {
   background: var(--white);
   border-bottom: 1px solid var(--gray-200);
-  padding: 1.25rem 0;
+  padding: 1rem 0;
   position: sticky;
   top: 68px;
   z-index: 20;
@@ -67,22 +71,24 @@
 .dir-layout {
   display: grid;
   grid-template-columns: 1fr 360px;
-  height: calc(100vh - 68px - 80px);
-  min-height: 500px;
+  /* Altura fija explícita: más fiable que calc con vh */
+  height: 600px;
 }
 
 /* ─── MAPA ────────────────────────────────────────────── */
 .dir-map-wrap {
   position: relative;
   background: var(--green-50);
+  /* Altura explícita para que Leaflet inicialice bien */
+  height: 600px;
 }
 #map {
   width: 100%;
-  height: 100%;
+  height: 600px;
   z-index: 1;
 }
 
-/* Personalización marcadores Leaflet */
+/* Personalización popups Leaflet */
 .leaflet-popup-content-wrapper {
   border-radius: var(--radius-md) !important;
   box-shadow: var(--shadow-md) !important;
@@ -128,23 +134,11 @@
   line-height: 1.5;
 }
 
-/* Icono marcador personalizado */
-.marker-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg);
-  border: 2px solid var(--white);
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* ─── LISTA LATERAL ───────────────────────────────────── */
 .dir-list {
   background: var(--gray-50);
   border-left: 1px solid var(--gray-200);
+  height: 600px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -247,6 +241,7 @@
   justify-content: space-between;
   gap: .75rem;
   flex-wrap: wrap;
+  flex-shrink: 0;
 }
 .dir-join__text {
   font-size: .875rem;
@@ -255,19 +250,18 @@
 
 /* ─── RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .dir-layout {
-    grid-template-columns: 1fr 300px;
-  }
+  .dir-layout { grid-template-columns: 1fr 300px; }
 }
 
 @media (max-width: 768px) {
   .dir-layout {
     grid-template-columns: 1fr;
-    grid-template-rows: 320px auto;
+    grid-template-rows: 340px auto;
     height: auto;
   }
-  .dir-map-wrap { height: 320px; }
-  .dir-list { max-height: 60vh; }
+  .dir-map-wrap { height: 340px; }
+  #map { height: 340px; }
+  .dir-list { height: auto; max-height: 500px; }
   .dir-controls { top: 60px; }
   .dir-controls__inner { flex-direction: column; align-items: stretch; }
   .dir-search { max-width: 100%; }

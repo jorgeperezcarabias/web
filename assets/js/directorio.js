@@ -224,3 +224,8 @@ document.getElementById('dir-search').addEventListener('input', e => {
 // ── Arranque ───────────────────────────────────────────
 initMapa();
 cargarDirectorio();
+
+// Fuerza a Leaflet a recalcular el tamaño una vez cargada la página
+window.addEventListener('load', () => {
+  if (mapaLeaflet) mapaLeaflet.invalidateSize();
+});
