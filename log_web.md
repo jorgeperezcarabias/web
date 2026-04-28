@@ -1,92 +1,78 @@
 # log_web.md — RedAgraria Web
 
 ## Contexto del proyecto
-Web de RedAgraria alojada inicialmente en **GitHub Pages** (rama `dev` / `prod`), con migración futura a **WordPress en Hostinger** (dominio: redagraria.es). Solo español por ahora.
+Web de RedAgraria alojada en **GitHub Pages** (rama `prod` publica, rama `main` desarrollo), con migración futura a **WordPress en Hostinger** (dominio: red-agraria.es). Solo español por ahora.
+
+## Dominio
+- **red-agraria.es** (con guión) — alojado en Hostinger, DNS apuntando a GitHub Pages
+- HTTPS activo (Enforce HTTPS activado en GitHub Pages)
 
 ## Stack técnico
-- Fase 1: HTML/CSS/JS puro — GitHub Pages (sin frameworks)
+- Fase 1: HTML/CSS/JS puro — GitHub Pages
 - Fase 2: Integración Supabase (auth, historial, panel personal)
-- Fase 3: WordPress en Hostinger con dominio redagraria.es
+- Fase 3: WordPress en Hostinger con dominio red-agraria.es
 
-## Arquitectura de páginas (Fase 1)
-- `index.html` — Landing (Hero, Cómo funciona, Para quién es, Testimonios, CTA WhatsApp, Footer)
-- `blog.html` — Blog/noticias (artículos en JSON estático)
-- `directorio.html` — Mapa con Leaflet.js (datos en JSON estático)
-- `bot.html` — Botón directo a WhatsApp
-- `assets/css/` — Estilos
-- `assets/js/` — Scripts
-- `assets/img/` — Imágenes y logos
-- `assets/data/` — JSON estáticos (blog, directorio)
+## Repositorio GitHub
+- Usuario: jorgeperezcarabias
+- Repo: jorgeperezcarabias/web (público)
+- Rama prod → red-agraria.es (coming-soon)
+- Rama main → web completa en desarrollo
+
+## Estrategia de visibilidad
+- **prod**: solo coming-soon visible en red-agraria.es. index.html = coming-soon. index-dev.html = web completa guardada.
+- **main**: web completa. Solo accesible por URL directa jorgeperezcarabias.github.io/web
+- Flujo: desarrollar en main → mergear a prod cuando se lance
+
+## Arquitectura de páginas (main)
+- `index.html` — Landing completa
+- `blog.html` — Blog con artículos dinámicos desde JSON
+- `directorio.html` — Mapa Leaflet.js con productores
+- `404.html` — Página de error personalizada
+- `aviso-legal.html`, `privacidad.html`, `cookies.html` — Legales RGPD/LSSICE
+- `coming-soon.html` — Página próximamente (prod)
+- `assets/css/` — main.css, animations.css, features.css, blog.css, directorio.css, legal.css, navbar-fix.css
+- `assets/js/` — main.js, blog.js, directorio.js
+- `assets/img/` — logo.svg, logo-dark.svg, favicon.svg
+- `assets/data/` — blog.json (3 artículos), directorio.json (6 productores ejemplo)
+- `sitemap.xml`, `robots.txt` — SEO básico
+- `favicon.svg` — en raíz para compatibilidad navegadores
 
 ## Identidad visual
 - Nombre: **RedAgraria**
-- Paleta: verde oscuro `#042b10` → verde medio `#16a34a` → verde claro `#4ade80`
-- Logo: concepto D4 "Espiga al viento" — planta/datos inclinada con nodos
-- Tipografía logo: Palatino (wordmark) + Trebuchet MS (tagline)
+- Paleta: verde oscuro #042b10 → verde medio #16a34a → verde claro #4ade80
+- Logo: concepto D4 "Espiga al viento" — planta/datos inclinada con nodos SVG
+- Tipografía: Playfair Display (títulos) + Source Sans 3 (cuerpo)
 - Tono: rural, cercano, experto — no corporativo
 
-## Archivos de logo generados
-- `assets/img/logo.svg` — Versión principal horizontal (fondo claro)
-- `assets/img/logo-dark.svg` — Versión oscura (fondo negro/oscuro)
-- `assets/img/favicon.svg` — Icono solo (favicon, app icon)
+## Supabase
+- URL: https://dqtjkdnbbhkpdoznmijv.supabase.co
+- Tabla lista_espera: id, email UNIQUE, created_at, origen
+- RLS activado: INSERT público, lectura solo desde panel Supabase
+- Clave pública (anon/publishable) usada en coming-soon.html
 
-## Estructura de carpetas creada
-```
-web/
-├── index.html          (pendiente)
-├── blog.html           (pendiente)
-├── directorio.html     (pendiente)
-├── bot.html            (pendiente)
-├── assets/
-│   ├── css/            (pendiente)
-│   ├── js/             (pendiente)
-│   ├── img/
-│   │   ├── logo.svg        ✓
-│   │   ├── logo-dark.svg   ✓
-│   │   └── favicon.svg     ✓
-│   └── data/           (pendiente)
-└── log_web.md          ✓
-```
+## Contacto público (coming-soon)
+- Teléfono: 644 17 45 83
+- Email corporativo pendiente de contratar
 
-## Decisiones de arquitectura
-- HTML puro en Fase 1 para facilitar migración posterior a WP
-- Leaflet.js para mapas (open source, sin coste)
-- Supabase Auth diferido a Fase 2
-- SVG nativo para logo (escalable, sin dependencias)
+## TODOs pendientes
+- [ ] Número WhatsApp real — reemplazar wa.me/34XXXXXXXXX en 4 sitios de main
+- [ ] Datos legales — NIF/CIF, razón social, domicilio en aviso-legal.html y privacidad.html
+- [ ] Google Search Console — registrar red-agraria.es y enviar sitemap.xml
+- [ ] Productores reales — actualizar directorio.json
+- [ ] Portal usuario — Fase 2 con Supabase auth
+- [ ] Migración WordPress — Fase 3
+
+## Navbar fix
+- navbar-fix.css en TODAS las páginas — garantiza .navbar__mobile[hidden] oculto
+- Dependencia: animations.css NO es necesario para ocultar el menú
 
 ---
 
-## Log de cambios
+## Log de cambios (resumen)
 
-### 2025-04 — Inicio del proyecto web
-- Definición de arquitectura completa (3 fases)
-- Estructura de páginas acordada
-- Identidad visual definida: logo D4 "Espiga al viento", paleta verde
-- Logos SVG generados: logo.svg, logo-dark.svg, favicon.svg
-- Estructura de carpetas creada en local
-- Secciones landing acordadas: Hero → Cómo funciona → Para quién es → Testimonios → CTA WhatsApp → Footer
-
-### 2025-04 - index.html v2: correcciones y nueva seccion funciones
-- Chat WhatsApp mockup corregido: usuario a la derecha (verde), bot a la izquierda
-- Conversacion del mockup actualizada con caso real del bot (precio cerdo + alerta)
-- Hero trust badges actualizados a funciones reales del bot
-- Numeros seccion 'Como funciona' con color mas visible (#a3c9a8)
-- Step 2 corregido: ejemplos de preguntas reales del bot (no fumigacion/plagas)
-- Step 4 actualizado: descripcion de alertas en lugar de historial
-- Texto CTA corregido: eliminado 'primera consulta gratis'
-- CTA hero cambiado a mensaje mas concreto sobre precio lonja
-- Nueva seccion 'Funciones del bot' (id=funciones) con 6 cards basadas en log.md real:
-  - Precios lonja tiempo real (Lonja Salamanca, actualiza lunes)
-  - Calculo beneficio estimado (peso x rendimiento x precio lonja)
-  - Alertas precio personalizadas (umbral + semanal)
-  - Menus y botones interactivos
-  - Lenguaje natural con IA (Gemini Flash fallback)
-  - Proximas funciones (dashed, opacidad reducida)
-- Seccion 'Para quien' actualizada: perfiles ajustados a capacidades reales
-- Testimonios actualizados: casos de uso reales (precio, alerta, calculo)
-- assets/css/features.css creado con estilos de .features y .feature-card
-- Navbar y footer actualizados con enlace a #funciones
-- PENDIENTE: numero WhatsApp real (Meta aun sin metodo de pago)
+### 2025-04 — Inicio y arquitectura
+- Definición arquitectura 3 fases, stack, páginas, identidad visual
+- Logo D4 SVG generado (logo.svg, logo-dark.svg, favicon.svg)
 
 ### 2025-04 - Despliegue en produccion
 - Repo GitHub hecho publico: github.com/jorgeperezcarabias/web
