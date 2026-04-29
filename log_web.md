@@ -57,7 +57,7 @@ Web de RedAgraria alojada en **GitHub Pages** (rama `prod` publica, rama `main` 
 ## TODOs pendientes
 - [ ] Número WhatsApp real — reemplazar wa.me/34XXXXXXXXX en 4 sitios de main
 - [ ] Datos legales — NIF/CIF, razón social, domicilio en aviso-legal.html y privacidad.html
-- [ ] Google Search Console — registrar red-agraria.es y enviar sitemap.xml
+- [x] Google Search Console — registrar red-agraria.es y enviar sitemap.xml ✅ 2025-04-28
 - [ ] Productores reales — actualizar directorio.json
 - [ ] Portal usuario — Fase 2 con Supabase auth
 - [ ] Migración WordPress — Fase 3
@@ -136,3 +136,12 @@ Web de RedAgraria alojada en **GitHub Pages** (rama `prod` publica, rama `main` 
 - index-dev.html en prod = web completa (guardada pero no visible)
 - main sigue con la web completa para desarrollo
 - Flujo: desarrollar en main, mergear a prod cuando se quiera actualizar publica
+
+### 2025-04-28 — SEO y formulario coming-soon
+- Google Search Console: propiedad red-agraria.es verificada y sitemap.xml enviado
+- sitemap.xml simplificado para prod (solo URL raíz — único contenido público en esta fase)
+- Fix clave Supabase en coming-soon.html: reemplazada sb_publishable_* por JWT anon correcto (eyJ*)
+- Formulario lista_espera probado y funcional — inserta correctamente en Supabase
+- Datos legales rellenados: aviso-legal.html y privacidad.html con nombre, NIF y domicilio reales
+- privacidad.html actualizada: sección B corregida (sí recoge emails), tabla de finalidades ampliada con lista_espera
+- PENDIENTE legal: darse de alta como autónomo o constituir figura jurídica antes del lanzamiento público (Fase 2)
