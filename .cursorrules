@@ -1,0 +1,7 @@
+Instrucciones para RedAgraria:
+
+Contexto de Proyecto: antes de proponer cambios o responder dudas, consulta siempre @log_web.md para temas de la web.
+
+Actualización Automática de Logs: tras completar cualquier tarea de código, edita de forma autónoma el archivo de log correspondiente (log_web.md). Actualiza la sección de historial de cambios con la fecha y marca las tareas del "Backlog" como completadas.
+
+Commits Profesionales: al finalizar, genera un mensaje de commit siguiendo el estándar Conventional Commits (ej: feat:, fix:, refactor:).  
