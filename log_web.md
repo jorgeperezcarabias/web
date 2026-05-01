@@ -61,6 +61,19 @@ Web de RedAgraria alojada en **GitHub Pages** (rama `prod` publica, rama `main` 
 - [ ] Productores reales — actualizar directorio.json
 - [ ] Portal usuario — Fase 2 con Supabase auth
 - [ ] Migración WordPress — Fase 3
+- [ ] Constituir figura jurídica (autónomo o SL) antes del lanzamiento público — pendiente hasta que bot+web+posible app estén listos
+- [ ] Número WhatsApp real — reemplazar wa.me/644174583 en cuanto Meta lo permita (problema tarjeta)
+
+---
+
+## 🗺️ Estrategia general de la web
+
+### Visión y fases
+- La web no se publicará en versión completa hasta que bot + web (+ posible app) estén estables, probados y con funciones sólidas.
+- **Fase actual:** coming-soon en prod. Lista de espera activa. Muy pocos usuarios.
+- **Beta web:** probar con familiares, amigos y usuarios de confianza del sector antes de publicar. Detectar fallos, pulir UX, validar funciones.
+- **Lanzamiento público:** solo cuando todo el sistema sea robusto, estético y a prueba de fallos. Coincide con la creación de empresa.
+- Siempre construir escalable y oficial desde el principio para minimizar cambios al legalizar.
 
 ## Navbar fix
 - navbar-fix.css en TODAS las páginas — garantiza .navbar__mobile[hidden] oculto
