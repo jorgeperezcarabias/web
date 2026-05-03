@@ -1,22 +1,38 @@
 # log_web.md — RedAgraria Web
 
 ## Contexto del proyecto
-Web de RedAgraria alojada inicialmente en **GitHub Pages** (rama `dev` / `prod`), con migración futura a **WordPress en Hostinger** (dominio: redagraria.es). Solo español por ahora.
+Web de RedAgraria alojada en **GitHub Pages** (rama `prod` pública, `main` desarrollo), con migración futura a **WordPress en Hostinger** (dominio: red-agraria.es). Solo español por ahora.
 
 ## Stack técnico
 - Fase 1: HTML/CSS/JS puro — GitHub Pages (sin frameworks)
 - Fase 2: Integración Supabase (auth, historial, panel personal)
-- Fase 3: WordPress en Hostinger con dominio redagraria.es
+- Fase 3: WordPress en Hostinger con dominio red-agraria.es
 
-## Arquitectura de páginas (Fase 1)
+## Repositorio GitHub
+- Usuario: jorgeperezcarabias
+- Repo: jorgeperezcarabias/web (público)
+- Rama **prod** → fuente de **GitHub Pages** (dominio red-agraria.es + URL github.io): solo lo que quieras público (p. ej. coming-soon / landing).
+- Rama **main** → web completa en desarrollo; **no** debe ser la rama de Pages si no quieres publicarla en la web.
+
+## Estrategia de visibilidad
+- **GitHub Pages** configurado solo desde **rama `prod`** (carpeta `/ (root)`). Así **red-agraria.es** y **jorgeperezcarabias.github.io/web** muestran el mismo sitio que `prod` (p. ej. landing). No hay segunda URL “oculta” con la web completa: quien quiera ver `main` en el navegador tendría que clonar o usar vista de archivos en GitHub (repo público).
+- **prod**: landing pública. `index.html` = coming-soon; `index-dev.html` puede guardar copia de la web completa sin ser la entrada pública.
+- **main**: desarrollo día a día; merge a `prod` solo cuando se quiera actualizar lo visible en dominio + github.io.
+- **Privacidad “suficiente” (elegida 2026-05-02):** no hace falta repo privado ni otro hosting; basta con no publicar `main` en Pages. El código en `main` sigue siendo legible en GitHub por cualquiera.
+
+## Arquitectura de páginas (main)
 - `index.html` — Landing (Hero, Cómo funciona, Para quién es, Testimonios, CTA WhatsApp, Footer)
-- `blog.html` — Blog/noticias (artículos en JSON estático)
-- `directorio.html` — Mapa con Leaflet.js (datos en JSON estático)
-- `bot.html` — Botón directo a WhatsApp
-- `assets/css/` — Estilos
-- `assets/js/` — Scripts
-- `assets/img/` — Imágenes y logos
-- `assets/data/` — JSON estáticos (blog, directorio)
+- `blog.html` — Blog con artículos desde JSON
+- `directorio.html` — Mapa Leaflet.js con productores
+- `404.html` — Página de error personalizada
+- `aviso-legal.html`, `privacidad.html`, `cookies.html` — Legales RGPD/LSSICE
+- `coming-soon.html` — Página próximamente (sobre todo en `prod`)
+- `assets/css/` — main.css, animations.css, features.css, blog.css, directorio.css, legal.css, navbar-fix.css
+- `assets/js/` — main.js, blog.js, directorio.js
+- `assets/img/` — logo.svg, logo-dark.svg, favicon.svg
+- `assets/data/` — blog.json, directorio.json
+- `sitemap.xml`, `robots.txt` — SEO básico
+- `favicon.svg` — en raíz para compatibilidad navegadores
 
 ## Identidad visual
 - Nombre: **RedAgraria**
@@ -87,6 +103,15 @@ web/
 - assets/css/features.css creado con estilos de .features y .feature-card
 - Navbar y footer actualizados con enlace a #funciones
 - PENDIENTE: numero WhatsApp real (Meta aun sin metodo de pago)
+
+### Navbar fix
+- navbar-fix.css en TODAS las páginas — garantiza .navbar__mobile[hidden] oculto
+- Dependencia: animations.css NO es necesario para ocultar el menú
+
+### 2026-05-02 — Visibilidad: solo no publicar en web
+- Decisión: mantener repo público y **no** exponer la web completa por URL; es suficiente con que **GitHub Pages use solo la rama `prod`**.
+- Documentación en este log alineada: `github.io` refleja la misma rama que Pages (`prod`), no `main` por separado.
+- Resolución de merge en `log_web.md` al pasar de `prod` a `main` con cambios locales sin commitear.
 
 ### 2025-04 - Despliegue en produccion
 - Repo GitHub hecho publico: github.com/jorgeperezcarabias/web
