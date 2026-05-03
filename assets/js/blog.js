@@ -8,11 +8,26 @@ const closeBtn    = document.getElementById('article-close');
 
 let todosLosArticulos = [];
 let categoriaActiva   = 'todos';
+let focoPrevioModal   = null;
 
-// ── Cargar artículos desde JSON ────────────────────────
+function escapeHtml(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// ── Cargar artículos (blog-data.js con file://, fetch con http) ─
 async function cargarArticulos() {
+  if (Array.isArray(window.REDAGRARIA_BLOG_DATA) && window.REDAGRARIA_BLOG_DATA.length) {
+    todosLosArticulos = window.REDAGRARIA_BLOG_DATA;
+    renderArticulos(todosLosArticulos);
+    return;
+  }
   try {
-    const res  = await fetch('assets/data/blog.json');
+    const res = await fetch('assets/data/blog.json');
     if (!res.ok) throw new Error('No se pudo cargar el blog');
     todosLosArticulos = await res.json();
     renderArticulos(todosLosArticulos);
@@ -22,7 +37,7 @@ async function cargarArticulos() {
         <p>📡</p>
         <p>No se pudieron cargar los artículos. Inténtalo de nuevo.</p>
       </div>`;
-    console.error('Error cargando blog.json:', err);
+    console.error('Error cargando blog:', err);
   }
 }
 
@@ -47,22 +62,22 @@ function renderArticulos(articulos) {
   blogGrid.innerHTML = articulos.map(art => `
     <article
       class="blog-card anim-ready ${art.destacado ? 'blog-card--destacado' : ''}"
-      data-id="${art.id}"
+      data-id="${escapeHtml(art.id)}"
       tabindex="0"
       role="button"
-      aria-label="Leer artículo: ${art.titulo}"
+      aria-label="Leer artículo: ${escapeHtml(art.titulo)}"
     >
       <div class="blog-card__thumb">
         ${art.destacado ? '<span class="blog-card__destacado-badge">Destacado</span>' : ''}
-        <span aria-hidden="true">${art.imagen_emoji}</span>
+        <span aria-hidden="true">${escapeHtml(art.imagen_emoji)}</span>
       </div>
       <div class="blog-card__body">
         <div class="blog-card__meta">
-          <span class="blog-card__cat">${art.categoria}</span>
-          <time class="blog-card__fecha" datetime="${art.fecha}">${formatearFecha(art.fecha)}</time>
+          <span class="blog-card__cat">${escapeHtml(art.categoria)}</span>
+          <time class="blog-card__fecha" datetime="${escapeHtml(art.fecha)}">${formatearFecha(art.fecha)}</time>
         </div>
-        <h2 class="blog-card__titulo">${art.titulo}</h2>
-        <p class="blog-card__resumen">${art.resumen}</p>
+        <h2 class="blog-card__titulo">${escapeHtml(art.titulo)}</h2>
+        <p class="blog-card__resumen">${escapeHtml(art.resumen)}</p>
         <span class="blog-card__leer" aria-hidden="true">Leer más →</span>
       </div>
     </article>
@@ -113,14 +128,16 @@ function abrirArticulo(id) {
   const art = todosLosArticulos.find(a => a.id === id);
   if (!art) return;
 
+  focoPrevioModal = document.activeElement;
+
   articleContent.innerHTML = `
-    <span class="art-emoji" aria-hidden="true">${art.imagen_emoji}</span>
+    <span class="art-emoji" aria-hidden="true">${escapeHtml(art.imagen_emoji)}</span>
     <div class="art-meta">
-      <span class="art-cat">${art.categoria}</span>
-      <time class="art-fecha" datetime="${art.fecha}">${formatearFecha(art.fecha)}</time>
+      <span class="art-cat">${escapeHtml(art.categoria)}</span>
+      <time class="art-fecha" datetime="${escapeHtml(art.fecha)}">${formatearFecha(art.fecha)}</time>
     </div>
-    <h2 id="article-title">${art.titulo}</h2>
-    ${art.contenido.map(p => `<p>${p}</p>`).join('')}
+    <h2 id="article-title">${escapeHtml(art.titulo)}</h2>
+    ${art.contenido.map(p => `<p>${escapeHtml(p)}</p>`).join('')}
   `;
 
   overlay.hidden = false;
@@ -132,6 +149,13 @@ function abrirArticulo(id) {
 function cerrarArticulo() {
   overlay.hidden = true;
   document.body.style.overflow = '';
+  const prev = focoPrevioModal;
+  focoPrevioModal = null;
+  if (prev && typeof prev.focus === 'function') {
+    try {
+      prev.focus();
+    } catch (e) { /* elemento ya no en DOM */ }
+  }
 }
 
 closeBtn.addEventListener('click', cerrarArticulo);

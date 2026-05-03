@@ -30,7 +30,7 @@ Web de RedAgraria alojada en **GitHub Pages** (rama `prod` pública, `main` desa
 - `assets/css/` — main.css, animations.css, features.css, blog.css, directorio.css, legal.css, navbar-fix.css
 - `assets/js/` — site-config.js (número WhatsApp único + enlaces `js-redagraria-wa`), main.js, blog.js, directorio.js
 - `assets/img/` — logo.svg, logo-dark.svg, favicon.svg, og-image.png (1200×630, Open Graph)
-- `assets/data/` — blog.json, directorio.json
+- `assets/data/` — `blog.json`, `directorio.json` (fetch en http); **`blog-data.js`**, **`directorio-data.js`** (mismos datos en JS para abrir con `file://` / Open in Browser sin servidor)
 - `sitemap.xml` — URLs del sitio completo (rama **main**). `sitemap.prod.xml` — plantilla mínima (solo `/`) para sustituir o copiar en **prod** cuando solo exista landing pública.
 - `robots.txt` — SEO básico
 - `favicon.svg` — en raíz para compatibilidad navegadores
@@ -57,12 +57,13 @@ web/
 │   ├── css/   main, features, animations, blog, directorio, legal, navbar-fix
 │   ├── js/    site-config.js, main.js, blog.js, directorio.js
 │   ├── img/   logo.svg, logo-dark.svg, favicon.svg, og-image.png
-│   └── data/  blog.json, directorio.json
+│   └── data/  blog.json, blog-data.js, directorio.json, directorio-data.js
 └── log_web.md
 ```
 
 ## Desarrollo local
-- Abrir HTML con **Open in Browser** / `file://` puede impedir que `fetch()` cargue `blog.json` o `directorio.json` (política CORS del navegador). Para probar blog y directorio, usar **http** local (`python3 -m http.server` en la carpeta `web`, Live Preview, etc.).
+- **Open in Browser** (`file://`): blog y directorio cargan datos desde `assets/data/blog-data.js` y `directorio-data.js` (definen `window.REDAGRARIA_*`); no hace falta `python3 -m http.server` para esas páginas. Al **editar** artículos o productores, actualiza **también** los `.js` y los `.json` para mantenerlos alineados (en http el código sigue pudiendo usar `fetch` al `.json` si faltara el global).
+- El mapa (Leaflet + teselas OpenStreetMap) puede comportarse distinto según navegador en `file://`; si el mapa falla, usa un servidor local solo para esa prueba.
 
 ## Decisiones de arquitectura
 - HTML puro en Fase 1 para facilitar migración posterior a WP
@@ -74,7 +75,18 @@ web/
 
 ## Log de cambios
 
+### 2026-05-02 — Mejoras adicionales (rendimiento, a11y, SEO, seguridad)
+- **Seguridad / enlaces:** `rel="noopener noreferrer"` en todos los `target="_blank"` de las HTML.
+- **Rendimiento / LCP:** logos navbar con `width`/`height`, `decoding="async"`, `fetchpriority="high"` en cabecera; footer con `loading="lazy"` en `logo-dark.svg`.
+- **404:** meta `description`, `theme-color`, skip link a `#error-main`, logo con dimensiones; animación respetando `prefers-reduced-motion`; script mínimo para skip (sin cargar `main.js` completo).
+- **Blog:** escape HTML al renderizar cards y modal; devolución de foco al cerrar modal; filtros `type="button"`; `aria-current="page"` en menú móvil; JSON-LD `ItemList` de artículos.
+- **Directorio:** escape en cards y popups del mapa; `CSS.escape` en selectores por `data-id`; filtros `type="button"`; JSON-LD `ItemList` de productores de ejemplo.
+- **CSS:** `@media (prefers-reduced-motion: reduce)` en `animations.css`; reglas `@media print` en `main.css` (ocultar nav/CTA, simplificar enlaces).
+- **Legales / cookies:** meta `description` en aviso, privacidad y cookies.
+- **Index:** `meta referrer` estricto; logo con `aria-current="page"` en inicio.
+
 ### 2026-05-02 — Plan de mejoras (WhatsApp, legal, SEO, a11y, sitemap)
+- **Blog/directorio sin servidor:** `assets/data/blog-data.js` y `directorio-data.js` (mismo contenido que los JSON) para **Open in Browser** (`file://`); `blog.js` / `directorio.js` usan primero `window.REDAGRARIA_*`, luego `fetch` al `.json`. Al editar datos, mantener alineados `.js` y `.json`.
 - **WhatsApp:** `assets/js/site-config.js` con número único `34644174583`; enlaces con clase `js-redagraria-wa` y `data-wa-prefill` opcional; script incluido en todas las páginas con CTA + `404.html`.
 - **Legales:** titular identificado (Jorge Pérez Carabias / proyecto RedAgraria); NIF y domicilio detallado vía correo de contacto (sin datos inventados).
 - **SEO / compartir:** `assets/img/og-image.png` 1200×630; meta `og:image`, Twitter card, `canonical` y `theme-color` en index, blog, directorio y legales/cookies; JSON-LD `Organization` + `WebSite` en index.

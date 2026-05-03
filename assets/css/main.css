@@ -803,3 +803,17 @@ button:focus-visible,
   .hero__actions { flex-direction: column; width: 100%; }
   .hero__actions .btn { justify-content: center; }
 }
+
+/* ─── Impresión ───────────────────────────────────────── */
+@media print {
+  .navbar__burger,
+  .navbar__mobile,
+  .skip-link,
+  .btn,
+  .hero__actions {
+    display: none !important;
+  }
+  body { background: #fff; color: #000; }
+  a { text-decoration: underline; }
+  .navbar { position: static; box-shadow: none; }
+}

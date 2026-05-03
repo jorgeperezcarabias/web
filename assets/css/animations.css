@@ -25,3 +25,13 @@
 .testimonial:nth-child(3) { transition-delay: .2s; }
 
 .step:nth-child(4) { transition-delay: .3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-ready,
+  .anim-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .anim-ready { transition-delay: 0s !important; }
+}

@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Directorio de ganaderos y agricultores de RedAgraria. Encuentra productores por zona, sector y tipo de explotación en el mapa.">
   <meta name="author" content="RedAgraria">
@@ -46,7 +47,7 @@
   <header class="navbar" id="navbar">
     <div class="container navbar__inner">
       <a href="index.html" class="navbar__logo" aria-label="Inicio RedAgraria">
-        <img src="assets/img/logo.svg" alt="RedAgraria" height="48">
+        <img src="assets/img/logo.svg" alt="RedAgraria" width="160" height="48" decoding="async" fetchpriority="high">
       </a>
       <nav class="navbar__links" aria-label="Navegación principal">
         <a href="index.html#como-funciona">Cómo funciona</a>
@@ -55,7 +56,7 @@
         <a href="blog.html">Noticias</a>
         <a href="directorio.html" aria-current="page">Directorio</a>
       </nav>
-      <a href="https://wa.me/34644174583" class="btn btn--primary btn--sm js-redagraria-wa" target="_blank" rel="noopener">
+      <a href="https://wa.me/34644174583" class="btn btn--primary btn--sm js-redagraria-wa" target="_blank" rel="noopener noreferrer">
         Hablar con el bot
       </a>
       <button class="navbar__burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
@@ -68,7 +69,7 @@
       <a href="index.html#para-quien">Para quién</a>
       <a href="blog.html">Noticias</a>
       <a href="directorio.html">Directorio</a>
-      <a href="https://wa.me/34644174583" class="btn btn--primary js-redagraria-wa" target="_blank" rel="noopener">Hablar con el bot</a>
+      <a href="https://wa.me/34644174583" class="btn btn--primary js-redagraria-wa" target="_blank" rel="noopener noreferrer">Hablar con el bot</a>
     </div>
   </header>
 
@@ -98,12 +99,12 @@
         </div>
 
         <div class="dir-filters" role="group" aria-label="Filtrar por sector">
-          <button class="filter-btn filter-btn--active" data-sector="todos">Todos</button>
-          <button class="filter-btn" data-sector="Vacuno">🐄 Vacuno</button>
-          <button class="filter-btn" data-sector="Porcino">🐷 Porcino</button>
-          <button class="filter-btn" data-sector="Ovino">🐑 Ovino</button>
-          <button class="filter-btn" data-sector="Caprino">🐐 Caprino</button>
-          <button class="filter-btn" data-sector="Cereales">🌾 Cereales</button>
+          <button type="button" class="filter-btn filter-btn--active" data-sector="todos">Todos</button>
+          <button type="button" class="filter-btn" data-sector="Vacuno">🐄 Vacuno</button>
+          <button type="button" class="filter-btn" data-sector="Porcino">🐷 Porcino</button>
+          <button type="button" class="filter-btn" data-sector="Ovino">🐑 Ovino</button>
+          <button type="button" class="filter-btn" data-sector="Caprino">🐐 Caprino</button>
+          <button type="button" class="filter-btn" data-sector="Cereales">🌾 Cereales</button>
         </div>
 
         <div class="dir-count" aria-live="polite" id="dir-count">
@@ -134,7 +135,7 @@
         <!-- CTA para aparecer en el directorio -->
         <div class="dir-join">
           <p class="dir-join__text">¿Quieres aparecer en el directorio?</p>
-          <a href="https://wa.me/34644174583" class="btn btn--primary btn--sm js-redagraria-wa" data-wa-prefill="Hola RedAgraria, quiero aparecer en el directorio" target="_blank" rel="noopener">
+          <a href="https://wa.me/34644174583" class="btn btn--primary btn--sm js-redagraria-wa" data-wa-prefill="Hola RedAgraria, quiero aparecer en el directorio" target="_blank" rel="noopener noreferrer">
             Escríbenos por WhatsApp
           </a>
         </div>
@@ -148,7 +149,7 @@
   <footer class="footer" role="contentinfo">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <img src="assets/img/logo-dark.svg" alt="RedAgraria" height="40">
+        <img src="assets/img/logo-dark.svg" alt="RedAgraria" width="132" height="40" loading="lazy" decoding="async">
         <p class="footer__tagline">El campo tiene sus propias respuestas.<br>Nosotros te las damos.</p>
       </div>
       <nav class="footer__nav" aria-label="Navegación footer">
@@ -162,7 +163,7 @@
         </div>
         <div class="footer__col">
           <h4>Contacto</h4>
-          <a href="https://wa.me/34644174583" class="js-redagraria-wa" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://wa.me/34644174583" class="js-redagraria-wa" target="_blank" rel="noopener noreferrer">WhatsApp</a>
           <a href="mailto:hola@red-agraria.es">hola@red-agraria.es</a>
         </div>
         <div class="footer__col">
@@ -181,8 +182,26 @@
     </div>
   </footer>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Directorio de productores — RedAgraria",
+    "description": "Ejemplos de ganaderos y agricultores por sector y zona (datos de demostración).",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Ganadería Los Arribes", "url": "https://red-agraria.es/directorio.html" },
+      { "@type": "ListItem", "position": 2, "name": "Porcino Sierra Norte", "url": "https://red-agraria.es/directorio.html" },
+      { "@type": "ListItem", "position": 3, "name": "Ovino Castellano Tierra de Campos", "url": "https://red-agraria.es/directorio.html" },
+      { "@type": "ListItem", "position": 4, "name": "Cereales La Mancha", "url": "https://red-agraria.es/directorio.html" },
+      { "@type": "ListItem", "position": 5, "name": "Caprino Extremeño", "url": "https://red-agraria.es/directorio.html" },
+      { "@type": "ListItem", "position": 6, "name": "Vacuno Galicia Verde", "url": "https://red-agraria.es/directorio.html" }
+    ]
+  }
+  </script>
+
   <!-- Leaflet.js -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN2I/tU=" crossorigin=""></script>
+  <script src="assets/data/directorio-data.js"></script>
   <script src="assets/js/site-config.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/directorio.js"></script>

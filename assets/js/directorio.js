@@ -19,6 +19,15 @@ const SECTOR_EMOJI = {
   'default':  '🏡'
 };
 
+function escapeHtml(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 // ── Estado ─────────────────────────────────────────────
 let todosProductores = [];
 let sectorActivo     = 'todos';
@@ -72,10 +81,10 @@ function renderMarcadores(productores) {
       .addTo(mapaLeaflet)
       .bindPopup(`
         <div class="popup-inner">
-          <span class="popup-sector">${SECTOR_EMOJI[p.sector] || ''} ${p.sector}</span>
-          <div class="popup-nombre">${p.nombre}</div>
-          <div class="popup-loc">📍 ${p.localidad}, ${p.provincia}</div>
-          <div class="popup-desc">${p.descripcion}</div>
+          <span class="popup-sector">${escapeHtml(SECTOR_EMOJI[p.sector] || '')} ${escapeHtml(p.sector)}</span>
+          <div class="popup-nombre">${escapeHtml(p.nombre)}</div>
+          <div class="popup-loc">📍 ${escapeHtml(p.localidad)}, ${escapeHtml(p.provincia)}</div>
+          <div class="popup-desc">${escapeHtml(p.descripcion)}</div>
         </div>
       `, { maxWidth: 240 });
 
@@ -105,20 +114,20 @@ function renderCards(productores) {
   container.innerHTML = productores.map(p => `
     <div
       class="dir-card anim-ready"
-      data-id="${p.id}"
+      data-id="${escapeHtml(p.id)}"
       tabindex="0"
       role="button"
-      aria-label="Ver ${p.nombre} en el mapa"
+      aria-label="Ver ${escapeHtml(p.nombre)} en el mapa"
     >
       <div class="dir-card__top">
-        <span class="dir-card__nombre">${p.nombre}</span>
-        <span class="dir-card__sector">${p.sector}</span>
+        <span class="dir-card__nombre">${escapeHtml(p.nombre)}</span>
+        <span class="dir-card__sector">${escapeHtml(p.sector)}</span>
       </div>
       <div class="dir-card__loc">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        ${p.localidad}, ${p.provincia}
+        ${escapeHtml(p.localidad)}, ${escapeHtml(p.provincia)}
       </div>
-      <div class="dir-card__desc">${p.descripcion}</div>
+      <div class="dir-card__desc">${escapeHtml(p.descripcion)}</div>
     </div>
   `).join('');
 
@@ -148,13 +157,13 @@ function activarCard(id) {
 
   // Desactivar card anterior
   if (cardActiva) {
-    const prev = document.querySelector(`.dir-card[data-id="${cardActiva}"]`);
+    const prev = document.querySelector(`.dir-card[data-id="${CSS.escape(String(cardActiva))}"]`);
     if (prev) prev.classList.remove('dir-card--active');
   }
 
   // Activar nueva
   cardActiva = id;
-  const card = document.querySelector(`.dir-card[data-id="${id}"]`);
+  const card = document.querySelector(`.dir-card[data-id="${CSS.escape(String(id))}"]`);
   if (card) {
     card.classList.add('dir-card--active');
     card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -181,8 +190,13 @@ function filtrar() {
   renderMarcadores(resultado);
 }
 
-// ── Carga de datos ─────────────────────────────────────
+// ── Carga de datos (directorio-data.js con file://, fetch con http) ─
 async function cargarDirectorio() {
+  if (Array.isArray(window.REDAGRARIA_DIRECTORIO_DATA) && window.REDAGRARIA_DIRECTORIO_DATA.length) {
+    todosProductores = window.REDAGRARIA_DIRECTORIO_DATA;
+    filtrar();
+    return;
+  }
   try {
     const res = await fetch('assets/data/directorio.json');
     if (!res.ok) throw new Error('Error cargando directorio');
@@ -195,7 +209,7 @@ async function cargarDirectorio() {
         <p>No se pudo cargar el directorio. Inténtalo de nuevo.</p>
       </div>`;
     document.getElementById('dir-count').textContent = '0 productores';
-    console.error('Error cargando directorio.json:', err);
+    console.error('Error cargando directorio:', err);
   }
 }
 
