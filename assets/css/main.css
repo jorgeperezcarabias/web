@@ -58,10 +58,48 @@ body {
   overflow-x: hidden;
 }
 
+body.nav-mobile-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; }
 button { cursor: pointer; border: none; background: none; font: inherit; }
+
+/* Saltar al contenido (visible con teclado) */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0.75rem;
+  z-index: 10001;
+  padding: 0.6rem 1rem;
+  background: var(--green-900);
+  color: var(--green-100);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  transform: translateY(-130%);
+  transition: transform var(--transition), outline-offset var(--transition);
+}
+.skip-link:focus {
+  outline: none;
+}
+.skip-link:focus-visible {
+  outline: 3px solid var(--green-400);
+  outline-offset: 2px;
+  transform: translateY(0);
+}
+
+/* Foco visible (teclado) */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+.navbar__burger:focus-visible {
+  outline: 3px solid var(--green-600);
+  outline-offset: 3px;
+}
 
 /* ─── CONTAINER ───────────────────────────────────────── */
 .container {

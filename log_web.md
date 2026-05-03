@@ -28,17 +28,18 @@ Web de RedAgraria alojada en **GitHub Pages** (rama `prod` pública, `main` desa
 - `aviso-legal.html`, `privacidad.html`, `cookies.html` — Legales RGPD/LSSICE
 - `coming-soon.html` — Página próximamente (sobre todo en `prod`)
 - `assets/css/` — main.css, animations.css, features.css, blog.css, directorio.css, legal.css, navbar-fix.css
-- `assets/js/` — main.js, blog.js, directorio.js
-- `assets/img/` — logo.svg, logo-dark.svg, favicon.svg
+- `assets/js/` — site-config.js (número WhatsApp único + enlaces `js-redagraria-wa`), main.js, blog.js, directorio.js
+- `assets/img/` — logo.svg, logo-dark.svg, favicon.svg, og-image.png (1200×630, Open Graph)
 - `assets/data/` — blog.json, directorio.json
-- `sitemap.xml`, `robots.txt` — SEO básico
+- `sitemap.xml` — URLs del sitio completo (rama **main**). `sitemap.prod.xml` — plantilla mínima (solo `/`) para sustituir o copiar en **prod** cuando solo exista landing pública.
+- `robots.txt` — SEO básico
 - `favicon.svg` — en raíz para compatibilidad navegadores
 
 ## Identidad visual
 - Nombre: **RedAgraria**
 - Paleta: verde oscuro `#042b10` → verde medio `#16a34a` → verde claro `#4ade80`
 - Logo: concepto D4 "Espiga al viento" — planta/datos inclinada con nodos
-- Tipografía logo: Palatino (wordmark) + Trebuchet MS (tagline)
+- Tipografía web: **Playfair Display** (titulares) + **Source Sans 3** (cuerpo), vía Google Fonts — coherente con `assets/css/main.css`
 - Tono: rural, cercano, experto — no corporativo
 
 ## Archivos de logo generados
@@ -46,23 +47,22 @@ Web de RedAgraria alojada en **GitHub Pages** (rama `prod` pública, `main` desa
 - `assets/img/logo-dark.svg` — Versión oscura (fondo negro/oscuro)
 - `assets/img/favicon.svg` — Icono solo (favicon, app icon)
 
-## Estructura de carpetas creada
+## Estructura de carpetas (referencia actual)
 ```
 web/
-├── index.html          (pendiente)
-├── blog.html           (pendiente)
-├── directorio.html     (pendiente)
-├── bot.html            (pendiente)
+├── index.html, blog.html, directorio.html, 404.html
+├── aviso-legal.html, privacidad.html, cookies.html, coming-soon.html
+├── sitemap.xml, sitemap.prod.xml, robots.txt, favicon.svg
 ├── assets/
-│   ├── css/            (pendiente)
-│   ├── js/             (pendiente)
-│   ├── img/
-│   │   ├── logo.svg        ✓
-│   │   ├── logo-dark.svg   ✓
-│   │   └── favicon.svg     ✓
-│   └── data/           (pendiente)
-└── log_web.md          ✓
+│   ├── css/   main, features, animations, blog, directorio, legal, navbar-fix
+│   ├── js/    site-config.js, main.js, blog.js, directorio.js
+│   ├── img/   logo.svg, logo-dark.svg, favicon.svg, og-image.png
+│   └── data/  blog.json, directorio.json
+└── log_web.md
 ```
+
+## Desarrollo local
+- Abrir HTML con **Open in Browser** / `file://` puede impedir que `fetch()` cargue `blog.json` o `directorio.json` (política CORS del navegador). Para probar blog y directorio, usar **http** local (`python3 -m http.server` en la carpeta `web`, Live Preview, etc.).
 
 ## Decisiones de arquitectura
 - HTML puro en Fase 1 para facilitar migración posterior a WP
@@ -73,6 +73,14 @@ web/
 ---
 
 ## Log de cambios
+
+### 2026-05-02 — Plan de mejoras (WhatsApp, legal, SEO, a11y, sitemap)
+- **WhatsApp:** `assets/js/site-config.js` con número único `34644174583`; enlaces con clase `js-redagraria-wa` y `data-wa-prefill` opcional; script incluido en todas las páginas con CTA + `404.html`.
+- **Legales:** titular identificado (Jorge Pérez Carabias / proyecto RedAgraria); NIF y domicilio detallado vía correo de contacto (sin datos inventados).
+- **SEO / compartir:** `assets/img/og-image.png` 1200×630; meta `og:image`, Twitter card, `canonical` y `theme-color` en index, blog, directorio y legales/cookies; JSON-LD `Organization` + `WebSite` en index.
+- **Accesibilidad:** enlace “Ir al contenido”, `main#main-content`, menú móvil con Escape, `body.nav-mobile-open` sin scroll, foco visible (`:focus-visible`), devolución de foco al botón menú al cerrar.
+- **Sitemap:** `lastmod` actualizado en `sitemap.xml`; añadido `sitemap.prod.xml` (solo `/`) para despliegues prod.
+- **Documentación:** este log alineado (tipografías, estructura, nota `file://` vs `fetch`).
 
 ### 2025-04 — Inicio del proyecto web
 - Definición de arquitectura completa (3 fases)
@@ -144,7 +152,7 @@ web/
   - Tabla finalidades con bases legales
 - cookies.html: sin cookies propias, solo Google Fonts tecnica, instrucciones navegadores
 - assets/css/legal.css: estilos compartidos (cabecera, secciones, tabla, nav entre paginas)
-- TODO en las tres paginas: rellenar NIF/CIF, razon social y domicilio cuando se decida figura juridica
+- ~~TODO en las tres paginas: rellenar NIF/CIF, razon social y domicilio~~ — actualizado 2026-05-02: titular y vías de contacto sin inventar NIF/domicilio postal
 
 ### 2025-04 - SEO basico y directorio con mapa
 - sitemap.xml creado con todas las paginas y prioridades

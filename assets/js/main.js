@@ -13,24 +13,44 @@ if (navbar) {
   window.addEventListener('scroll', onScroll, { passive: true });
 }
 
+// ── Saltar al contenido (foco accesible) ───────────────
+const skipLink = document.querySelector('.skip-link');
+const mainContent = document.getElementById('main-content');
+if (skipLink && mainContent) {
+  skipLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    mainContent.focus({ preventScroll: true });
+    mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
 // ── Navbar: menú móvil ─────────────────────────────────
-const burger  = document.querySelector('.navbar__burger');
+const burger = document.querySelector('.navbar__burger');
 const mobileMenu = document.getElementById('mobile-menu');
 if (burger && mobileMenu) {
+  const setMenuOpen = (open) => {
+    burger.setAttribute('aria-expanded', String(open));
+    mobileMenu.hidden = !open;
+    mobileMenu.setAttribute('aria-hidden', String(!open));
+    document.body.classList.toggle('nav-mobile-open', open);
+    burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    if (!open) burger.focus();
+  };
+
   burger.addEventListener('click', () => {
     const isOpen = burger.getAttribute('aria-expanded') === 'true';
-    const nowOpen = !isOpen;
-    burger.setAttribute('aria-expanded', String(nowOpen));
-    mobileMenu.hidden = !nowOpen;
-    mobileMenu.setAttribute('aria-hidden', String(!nowOpen));
+    setMenuOpen(!isOpen);
   });
-  // Cierra el menú al pulsar un enlace
-  mobileMenu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      burger.setAttribute('aria-expanded', 'false');
-      mobileMenu.hidden = true;
-      mobileMenu.setAttribute('aria-hidden', 'true');
-    });
+
+  mobileMenu.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => setMenuOpen(false));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (burger.getAttribute('aria-expanded') !== 'true') return;
+    e.preventDefault();
+    setMenuOpen(false);
   });
 }
 
